@@ -1,0 +1,12 @@
+version: '3.3'
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.46.0
+    ports:
+    - '9090:9090'
+    volumes:
+    - ./config/prometheus.yml:/etc/prometheus/prometheus.yml
+    restart: on-failure
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
