@@ -26,7 +26,7 @@ public class PageDtoOut<T> {
 
 	public static <T> PageDtoOut<T> from(Integer page, Integer pageSize, Long totalElements, List<T> data) {
 		Long totalPages = totalElements / pageSize;
-		if (totalPages % pageSize != 0) {
+		if (totalElements % pageSize != 0) {
 			totalPages++;
 		}
 		return PageDtoOut.<T>builder()

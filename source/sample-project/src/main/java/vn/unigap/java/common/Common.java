@@ -1,5 +1,8 @@
 package vn.unigap.java.common;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.UUID;
 
 public class Common {
@@ -20,5 +23,9 @@ public class Common {
 	public static String toLowerCase(String s) {
 		if (s == null) return null;
 		return s.toLowerCase();
+	}
+
+	public static Date currentTime() {
+		return Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());
 	}
 }

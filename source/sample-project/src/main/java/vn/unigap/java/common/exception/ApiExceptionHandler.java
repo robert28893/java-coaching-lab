@@ -1,5 +1,7 @@
 package vn.unigap.java.common.exception;
 
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.springframework.beans.ConversionNotSupportedException;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.core.annotation.Order;
@@ -46,6 +48,15 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 e.getHttpStatus());
     }
 
+    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+            responseCode = "405",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(
+                            implementation = ApiResponse.class
+                    )
+            )
+    )
     @Override
     protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         String supportedMethods = ex.getSupportedMethods() == null ? null : String.join(",", ex.getSupportedMethods());
@@ -61,6 +72,15 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 status);
     }
 
+    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+            responseCode = "415",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(
+                            implementation = ApiResponse.class
+                    )
+            )
+    )
     @Override
     protected ResponseEntity<Object> handleHttpMediaTypeNotSupported(HttpMediaTypeNotSupportedException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         String supportedContentTypes = ex.getSupportedMediaTypes().stream().map(MimeType::toString)
@@ -77,6 +97,15 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 status);
     }
 
+    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+            responseCode = "406",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(
+                            implementation = ApiResponse.class
+                    )
+            )
+    )
     @Override
     protected ResponseEntity<Object> handleHttpMediaTypeNotAcceptable(HttpMediaTypeNotAcceptableException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         String supportedContentTypes = ex.getSupportedMediaTypes().stream().map(MimeType::toString)
@@ -92,6 +121,15 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 status);
     }
 
+    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+            responseCode = "500",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(
+                            implementation = ApiResponse.class
+                    )
+            )
+    )
     @Override
     protected ResponseEntity<Object> handleMissingPathVariable(MissingPathVariableException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         ex.printStackTrace();
@@ -107,6 +145,15 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 status);
     }
 
+    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+            responseCode = "400",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(
+                            implementation = ApiResponse.class
+                    )
+            )
+    )
     @Override
     protected ResponseEntity<Object> handleMissingServletRequestParameter(MissingServletRequestParameterException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         String msg = String.format("MissingServletRequestParameter: parameter name %s", ex.getParameterName());
@@ -119,6 +166,15 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 status);
     }
 
+    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+            responseCode = "400",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(
+                            implementation = ApiResponse.class
+                    )
+            )
+    )
     @Override
     protected ResponseEntity<Object> handleMissingServletRequestPart(MissingServletRequestPartException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         String msg = String.format("MissingServletRequestPart: request part name %s", ex.getRequestPartName());
@@ -131,6 +187,15 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 status);
     }
 
+    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+            responseCode = "400",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(
+                            implementation = ApiResponse.class
+                    )
+            )
+    )
     @Override
     protected ResponseEntity<Object> handleServletRequestBindingException(ServletRequestBindingException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         String msg = String.format("ServletRequestBinding: detail message code %s", ex.getDetailMessageCode());
@@ -164,6 +229,16 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 status);
     }
 
+    //    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+            responseCode = "404",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(
+                            implementation = ApiResponse.class
+                    )
+            )
+    )
     @Override
     protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         String msg = String.format("NoHandlerFound: method %s, url %s", ex.getHttpMethod(), ex.getRequestURL());
@@ -177,6 +252,15 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
                 status);
     }
 
+    @io.swagger.v3.oas.annotations.responses.ApiResponse(
+            responseCode = "503",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(
+                            implementation = ApiResponse.class
+                    )
+            )
+    )
     @Override
     protected ResponseEntity<Object> handleAsyncRequestTimeoutException(AsyncRequestTimeoutException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         ex.printStackTrace();

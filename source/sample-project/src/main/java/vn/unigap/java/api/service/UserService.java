@@ -9,11 +9,11 @@ import vn.unigap.java.api.dto.out.UserDtoOut;
 public interface UserService {
     PageDtoOut<UserDtoOut> list(PageDtoIn pageDtoIn);
 
-    UserDtoOut get(Integer id);
+    UserDtoOut get(Long id);
 
     UserDtoOut create(UserDtoIn userDtoIn);
 
-    UserDtoOut update(Integer id, UpdateUserDtoIn updateUserDtoIn);
+    UserDtoOut update(Long id, UpdateUserDtoIn updateUserDtoIn);
 
-    void delete(Integer id);
+    void delete(Long id);
 }

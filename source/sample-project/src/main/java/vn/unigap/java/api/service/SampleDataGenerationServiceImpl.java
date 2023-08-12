@@ -3,6 +3,7 @@ package vn.unigap.java.api.service;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import vn.unigap.java.api.entity.User;
 import vn.unigap.java.api.repository.user.UserRepository;
 import vn.unigap.java.reqres.ReqresPageDtoOut;
 import vn.unigap.java.reqres.ReqresService;
@@ -42,6 +43,14 @@ public class SampleDataGenerationServiceImpl implements SampleDataGenerationServ
 
     private void saveUsers(List<ReqresUserDtoOut> users) {
         System.out.println(users);
-        // TODO: saving users to db
+        for (ReqresUserDtoOut user: users) {
+            userRepository.save(User.builder()
+                            .id(user.getId())
+                            .email(user.getEmail())
+                            .firstName(user.getFirstName())
+                            .lastName(user.getLastName())
+                            .avatar(user.getAvatar())
+                    .build());
+        }
     }
 }
