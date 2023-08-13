@@ -23,7 +23,7 @@ import java.util.HashMap;
 
 @RestController
 @RequestMapping(value = "/users", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-@Tag(name = "Users", description = "Quản lý users")
+@Tag(name = "User", description = "Quản lý user")
 public class UserController extends AbstractResponseController {
 
     private final UserService userService;

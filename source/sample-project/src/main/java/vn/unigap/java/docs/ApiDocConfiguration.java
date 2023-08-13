@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Configuration;
         ),
 //        tags = {
 //                @Tag(
-//                        name = "Users",
+//                        name = "User",
 //                        description = "Quản lý user"
 //                )
 //        },
