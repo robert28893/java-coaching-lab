@@ -3,6 +3,8 @@
 ```bash
 docker compose up -d
 ```
+Lệnh này sẽ start mysql server sử dụng docker, port kết nối mặc định là `3306`
+Sử dụng `username` root và `password` là giá trị của biến `MYSQL_ROOT_PASSWORD` trong file `docker-compose.yml`
 
 # Stop database
 ```bash
