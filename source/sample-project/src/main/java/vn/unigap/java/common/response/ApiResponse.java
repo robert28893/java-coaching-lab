@@ -13,27 +13,27 @@ import vn.unigap.java.common.errorcode.ErrorCode;
 @NoArgsConstructor
 public class ApiResponse<T> {
 
-	private Integer errorCode; // ma loi quy dinh
+    private Integer errorCode; // ma loi quy dinh
 
-	private Integer statusCode; // http status code
+    private Integer statusCode; // http status code
 
-	private String message; // message mo ta loi
+    private String message; // message mo ta loi
 
-	private T object;
+    private T object;
 
-	public static <T> ApiResponse<T> success(T object) {
-		return ApiResponse.<T>builder()
-				.errorCode(ErrorCode.SUCCESS)
-				.statusCode(HttpStatus.OK.value())
-				.object(object)
-				.build();
-	}
+    public static <T> ApiResponse<T> success(T object) {
+        return ApiResponse.<T>builder()
+                .errorCode(ErrorCode.SUCCESS)
+                .statusCode(HttpStatus.OK.value())
+                .object(object)
+                .build();
+    }
 
-	public static <T> ApiResponse<T> error(Integer errorCode, HttpStatus httpStatus, String message) {
-		return ApiResponse.<T>builder()
-				.errorCode(errorCode)
-				.statusCode(httpStatus.value())
-				.message(message)
-				.build();
-	}
+    public static <T> ApiResponse<T> error(Integer errorCode, HttpStatus httpStatus, String message) {
+        return ApiResponse.<T>builder()
+                .errorCode(errorCode)
+                .statusCode(httpStatus.value())
+                .message(message)
+                .build();
+    }
 }

@@ -1,15 +1,15 @@
 package vn.unigap.java.common.enums;
 
 public enum RoleEnum {
-	USER("USER");
+    USER("USER");
 
-	private final String roleName;
+    private final String roleName;
 
-	RoleEnum(String roleName) {
-		this.roleName = roleName;
-	}
+    RoleEnum(String roleName) {
+        this.roleName = roleName;
+    }
 
-	public String getRoleName() {
-		return roleName;
-	}
+    public String getRoleName() {
+        return roleName;
+    }
 }
