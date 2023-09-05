@@ -4,7 +4,7 @@
 
 1. Khởi tạo project bằng công cụ spring initializr
 
-Truy cập vào đường dẫn sau [spring-initailizr](https://start.spring.io/) và cấu hình các tham số như trong ảnh.
+Truy cập vào đường dẫn sau [spring-initializr](https://start.spring.io/) và cấu hình các tham số như trong ảnh.
 
 ![](img/spring-initializr.png)
 
