@@ -6,7 +6,7 @@
   * [Khởi tạo project](#khởi-tạo-project)
     * [Khởi tạo project bằng công cụ spring initializr](#khởi-tạo-project-bằng-công-cụ-spring-initializr)
     * [Cấu hình git cho dự án và đẩy lên github](#cấu-hình-git-cho-dự-án-và-đẩy-lên-github)
-  * [Tìm hiểu về Spring Framework](#tìm-hiểu-về-spring-framework)
+  * [Làm quen với Spring Framework](#làm-quen-với-spring-framework)
 <!-- TOC -->
 
 ## Overview
