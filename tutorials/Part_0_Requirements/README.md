@@ -82,15 +82,36 @@ erDiagram
 ```
 
 **EMPLOYER**
-
 - Người đăng tuyển các công việc
 - Một `employer` có thể đăng 0 hoặc nhiều `job`
 
 **JOB**
-
 - Thông tin về công việc
-- Một job phải nằm ở 1 hoặc nhiều lĩnh vực `job_filed`
+- Một job phải nằm ở 1 hoặc nhiều lĩnh vực `job_field`
 - Một job khi đăng cần chỉ định rõ ở 1 hoặc nhiều tỉnh thành (khu vực) `job_province`
+
+**SEEKER**
+- Ngưới tìm việc
+- Một `seeker` có thể tạo 0 hoặc nhiều `resume`
+- Một `seeker` đang làm việc hoặc mong muốn tìm việc tại một `job_province`
+
+**RESUME**
+- CV xin việc
+- Một `resume` phải được sở hữu bởi duy nhất một `seeker`
+- Một `resume` có thể nằm ở 0 hoặc nhiều `job_field` 
+- Một `resume` có thể được dùng để ứng tuyển công việc tại 0 hoặc nhiều `job_province`
+
+**JOB_FIELD**
+- Thông tin về các lĩnh vực
+
+**JOB_PROVINCE**
+- Thông tin về khu vực, tỉnh thành 
+
+Các entities `job_field` và `job_province` chứa các metadata của hệ thống. Dữ liệu trong 2 bảng này đã được tạo sẵn. 
+Bạn sẽ không cần thao tác thêm, sửa, xóa trong 2 bảng này.
+
+Các entities `employer`, `job`, `seeker`, `resume` liên quan chính đến nghiệp vụ. Các API của chúng ta sẽ xoay quanh các
+entities này.
 
 ## Yêu cầu chung
 
