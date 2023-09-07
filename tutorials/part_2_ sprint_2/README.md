@@ -1,7 +1,7 @@
-# Sprint 1
+# Sprint 2
 
 <!-- TOC -->
-* [Sprint 1](#sprint-1)
+* [Sprint 2](#sprint-2)
   * [Overview](#overview)
   * [Khởi tạo project](#khởi-tạo-project)
     * [Khởi tạo project bằng công cụ spring initializr](#khởi-tạo-project-bằng-công-cụ-spring-initializr)
