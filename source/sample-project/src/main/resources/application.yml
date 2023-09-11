@@ -32,3 +32,10 @@ management:
 ---
 reqres:
   url: https://reqres.in
+---
+jwk:
+  key:
+    private:
+      location: ${HOME}/.ssh/ida_rsa
+    public:
+      location: ${HOME}/.ssh/ida_rsa.pub
