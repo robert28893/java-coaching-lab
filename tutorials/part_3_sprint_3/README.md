@@ -14,6 +14,7 @@
   * [Dummy API](#dummy-api)
   * [Khởi tạo database](#khởi-tạo-database)
   * [Xử lý logic](#xử-lý-logic)
+  * [Testing](#testing)
 <!-- TOC -->
 
 ## Overview
@@ -23,6 +24,8 @@ Trong sprint này, bạn sẽ thiết kế bộ API cho nghiệp vụ xoay quanh
 Từ mô tả non-technical bạn sẽ định nghĩa và triền khai các API: in/output, resource naming.
 
 Sau khi đã khai báo xong api dummy, bạn sẽ thêm các layer service, repository để xử lý các logic cho API.
+
+Cuối cùng, bạn sẽ viết unit test cho chương trình của bạn.
 
 ## Mô tả
 
@@ -186,4 +189,12 @@ Sau khi đã start và import database, công việc tiếp theo của bạn là
 - Khai báo các `repository`
 - Khai báo các `service`
 - Viết code xử lý logic
-- Testing
+
+## Testing
+
+Tham khảo tutorial sau:
+
+[Testing web](https://spring.io/guides/gs/testing-web/)
+
+Thực hiện viết testing cho từng API
+
