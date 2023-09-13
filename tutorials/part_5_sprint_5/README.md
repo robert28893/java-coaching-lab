@@ -5,7 +5,7 @@
   * [Overview](#overview)
   * [Mô tả](#mô-tả)
     * [1. Xem chỉ số chung của hệ thống theo ngày](#1-xem-chỉ-số-chung-của-hệ-thống-theo-ngày)
-    * [2. Danh sách `job` và các `seeker` phù hợp.](#2-danh-sách-job-và-các-seeker-phù-hợp)
+    * [2. Lấy thông tin `job` và các `seeker` phù hợp.](#2-lấy-thông-tin-job-và-các-seeker-phù-hợp)
   * [Exception Handler](#exception-handler)
     * [1. Khai báo exception](#1-khai-báo-exception)
     * [2. Handling exception với `ControlAdvice`](#2-handling-exception-với-controladvice)
@@ -61,17 +61,15 @@ trong một khoảng thời gian.
 
 Chart sắp xếp các element theo `date` tăng dần.
 
-### 2. Danh sách `job` và các `seeker` phù hợp.
+### 2. Lấy thông tin `job` và các `seeker` phù hợp.
 
-Lấy danh sách các `job` của một employer và các `seeker` phù hợp với `job` đó.
+Lấy thông tin `job` và các `seeker` phù hợp với `job` đó.
 
 **Input**
 
-| Trường     | Bắt buộc | Ràng buộc                      | Mô tả                     |
-|------------|----------|--------------------------------|---------------------------|
-| page       | x        | page phải lớn hơn 0            | Page index                | 
-| pageSize   | x        | pageSize không quá 500 phần tử | Số phần tử trên một trang |
-| employerId | x        |                                | Lọc theo employerId       |
+| Trường | Bắt buộc | Ràng buộc | Mô tả        |
+|--------|----------|-----------|--------------|
+| id     | x        |           | Id của `job` |
 
 **Output**
 
@@ -90,7 +88,7 @@ Lấy danh sách các `job` của một employer và các `seeker` phù hợp v�
 
 **Description**
 
-Nếu `employerId` không tồn tại thì báo lỗi.
+Nếu `id` không tồn tại thì báo lỗi.
 
 Danh sách sắp xếp theo thứ tự giảm dần `expiredAt` của `job`.
 

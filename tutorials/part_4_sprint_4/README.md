@@ -127,27 +127,23 @@ Nếu `id` không tồn tại thì báo lỗi.
 
 **Input**
 
-| Trường     | Bắt buộc | Ràng buộc                      | Mô tả                                      |
-|------------|----------|--------------------------------|--------------------------------------------|
-| page       | x        | page phải lớn hơn 0            | Page index                                 | 
-| pageSize   | x        | pageSize không quá 500 phần tử | Số phần tử trên một trang                  |
-| employerId | x        |                                | Lọc theo employerId. <br/>-1: All          |
-| fieldId    | x        |                                | Lọc theo lĩnh vực. <br/>-1: All            |
-| provinceId | x        |                                | Lọc theo tỉnh thành/ khu vực. <br/>-1: All |
+| Trường     | Bắt buộc | Ràng buộc                      | Mô tả                             |
+|------------|----------|--------------------------------|-----------------------------------|
+| page       | x        | page phải lớn hơn 0            | Page index                        | 
+| pageSize   | x        | pageSize không quá 500 phần tử | Số phần tử trên một trang         |
+| employerId | x        |                                | Lọc theo employerId. <br/>-1: All |
 
 **Output**
 
-| Trường       | Mô tả                                                        |
-|--------------|--------------------------------------------------------------|
-| id           | Mã id của job                                                |
-| title        | Tiêu đề của job                                              |
-| quantity     | Số lượng vị trí cần tuyển                                    |
-| fields       | Danh sách {id, name} của `job_field` liên quan đến công việc |
-| provinces    | Danh sách {id, name} của `job_province` đăng tuyển công việc |
-| salary       | Mức lương                                                    |
-| expiredAt    | Ngày hết hạn                                                 |
-| employerId   | Mã id của employer                                           |
-| employerName | Tên của employer                                             |
+| Trường       | Mô tả                     |
+|--------------|---------------------------|
+| id           | Mã id của job             |
+| title        | Tiêu đề của job           |
+| quantity     | Số lượng vị trí cần tuyển |
+| salary       | Mức lương                 |
+| expiredAt    | Ngày hết hạn              |
+| employerId   | Mã id của employer        |
+| employerName | Tên của employer          |
 
 **Description**
 
@@ -377,26 +373,22 @@ Nếu `id` không tồn tại thì báo lỗi.
 
 **Input**
 
-| Trường     | Bắt buộc | Ràng buộc                      | Mô tả                                      |
-|------------|----------|--------------------------------|--------------------------------------------|
-| page       | x        | page phải lớn hơn 0            | Page index                                 | 
-| pageSize   | x        | pageSize không quá 500 phần tử | Số phần tử trên một trang                  |
-| seekerId   | x        |                                | Lọc theo seeker. <br/>-1: All              |
-| fieldId    | x        |                                | Lọc theo lĩnh vực. <br/>-1: All            |
-| provinceId | x        |                                | Lọc theo tỉnh thành/ khu vực. <br/>-1: All |
+| Trường   | Bắt buộc | Ràng buộc                      | Mô tả                         |
+|----------|----------|--------------------------------|-------------------------------|
+| page     | x        | page phải lớn hơn 0            | Page index                    | 
+| pageSize | x        | pageSize không quá 500 phần tử | Số phần tử trên một trang     |
+| seekerId | x        |                                | Lọc theo seeker. <br/>-1: All |
 
 **Output**
 
-| Trường     | Mô tả                                                          |
-|------------|----------------------------------------------------------------|
-| id         | Mã id của resume                                               |
-| seekerId   | Mã id của seeker                                               |
-| seekerName | Họ tên của seeker                                              |
-| careerObj  | Mục tiêu nghề nghiệp                                           |
-| title      | Tiêu đề                                                        |
-| salary     | Mức lương mong muốn. Đơn vị triệu                              |
-| fields     | Danh sách {id, name} của `job_field` liên quan đến `resume`    |
-| provinces  | Danh sách {id, name} của `job_province` liên quan đến `resume` |
+| Trường     | Mô tả                             |
+|------------|-----------------------------------|
+| id         | Mã id của resume                  |
+| seekerId   | Mã id của seeker                  |
+| seekerName | Họ tên của seeker                 |
+| careerObj  | Mục tiêu nghề nghiệp              |
+| title      | Tiêu đề                           |
+| salary     | Mức lương mong muốn. Đơn vị triệu |
 
 **Description**
 

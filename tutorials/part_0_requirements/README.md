@@ -1,7 +1,7 @@
-Requirements of project
----
+# Requirements of project
+
 <!-- TOC -->
-  * [Requirements of project](#requirements-of-project)
+* [Requirements of project](#requirements-of-project)
   * [Overview](#overview)
   * [Bài toán](#bài-toán)
   * [Mô tả](#mô-tả)
@@ -9,6 +9,7 @@ Requirements of project
     * [1. Quy trình làm việc](#1-quy-trình-làm-việc)
     * [2. Response của API](#2-response-của-api)
     * [3. Source code](#3-source-code)
+  * [Objectives](#objectives)
 <!-- TOC -->
 
 ## Overview
@@ -85,32 +86,38 @@ erDiagram
 ```
 
 **EMPLOYER**
+
 - Người đăng tuyển các công việc
 - Một `employer` có thể đăng 0 hoặc nhiều `job`
 
 **JOB**
+
 - Thông tin về công việc
 - Một job phải nằm ở 1 hoặc nhiều lĩnh vực `job_field`
 - Một job khi đăng cần chỉ định rõ ở 1 hoặc nhiều tỉnh thành (khu vực) `job_province`
 
 **SEEKER**
+
 - Ngưới tìm việc
 - Một `seeker` có thể tạo 0 hoặc nhiều `resume`
 - Một `seeker` đang làm việc hoặc mong muốn tìm việc tại một `job_province`
 
 **RESUME**
+
 - CV xin việc
 - Một `resume` phải được sở hữu bởi duy nhất một `seeker`
-- Một `resume` có thể nằm ở 0 hoặc nhiều `job_field` 
+- Một `resume` có thể nằm ở 0 hoặc nhiều `job_field`
 - Một `resume` có thể được dùng để ứng tuyển công việc tại 0 hoặc nhiều `job_province`
 
 **JOB_FIELD**
+
 - Thông tin về các lĩnh vực
 
 **JOB_PROVINCE**
-- Thông tin về khu vực, tỉnh thành 
 
-Các entities `job_field` và `job_province` chứa các metadata của hệ thống. Dữ liệu trong 2 bảng này đã được tạo sẵn. 
+- Thông tin về khu vực, tỉnh thành
+
+Các entities `job_field` và `job_province` chứa các metadata của hệ thống. Dữ liệu trong 2 bảng này đã được tạo sẵn.
 Bạn sẽ không cần thao tác thêm, sửa, xóa trong 2 bảng này.
 
 Các entities `employer`, `job`, `seeker`, `resume` liên quan chính đến nghiệp vụ. Các API của chúng ta sẽ xoay quanh các
@@ -172,3 +179,16 @@ Với mỗi sprint, bạn cần tạo một nhánh với tên `feature/sprint-X`
 dụ: sprint-1, sprint-2, ...
 
 Sau khi hoàn thành sprint, bạn tiến hành merge nhánh đã tạo vào branch `main`.
+
+## Objectives
+
+Những kiến thức bạn sẽ thu được sau khi hoàn thành project này:
+
+- Spring configuration using Java Configuration and Annotations
+- Testing Spring applications using JUnit 5
+- Spring Data Access - JDBC, JPA and Spring Data
+- Simplifying application development with Spring Boot
+- Spring Boot auto-configuration, starters and properties
+- Build a simple REST application using Spring Boot
+- Spring Security
+- Enable and extend metrics and monitoring capabilities using Spring Boot actuator
