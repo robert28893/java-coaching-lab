@@ -24,18 +24,11 @@ management:
     web:
       exposure:
         include: '*'
-#logging:
-#  level:
-##    root: DEBUG
-#    org.springframework.security: trace
+logging:
+  level:
+    root: DEBUG
+    org.springframework.security: trace
 
 ---
 reqres:
   url: https://reqres.in
----
-jwk:
-  key:
-    private:
-      location: ${HOME}/.ssh/ida_rsa
-    public:
-      location: ${HOME}/.ssh/ida_rsa.pub

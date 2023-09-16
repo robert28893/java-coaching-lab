@@ -1,15 +1,19 @@
 package vn.unigap.java.api.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import vn.unigap.java.api.dto.in.PageDtoIn;
 import vn.unigap.java.api.dto.in.UpdateUserDtoIn;
@@ -44,9 +48,11 @@ public class UserController extends AbstractResponseController {
                                     )
                             )
                     )
-            }
+            },
+            security = {@SecurityRequirement(name = "Authorization")}
     )
     @GetMapping(value = "", consumes = MediaType.ALL_VALUE)
+//    @PreAuthorize(value = "hasAuthority('SCOPE_ADMIN')")
     public ResponseEntity<?> list(@Valid PageDtoIn pageDtoIn) {
         return responseEntity(() -> {
             return this.userService.list(pageDtoIn);
@@ -123,10 +129,10 @@ public class UserController extends AbstractResponseController {
                     @ApiResponse(
                             responseCode = "200",
                             content = {@Content(
-                              mediaType = "application/json",
-                              schema = @Schema(
-                                      implementation = vn.unigap.java.common.response.ApiResponse.class
-                              )
+                                    mediaType = "application/json",
+                                    schema = @Schema(
+                                            implementation = vn.unigap.java.common.response.ApiResponse.class
+                                    )
                             )}
                     )
             }

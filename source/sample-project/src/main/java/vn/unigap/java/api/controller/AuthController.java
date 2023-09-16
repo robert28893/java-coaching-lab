@@ -44,7 +44,7 @@ public class AuthController extends AbstractResponseController {
                     )
             }
     )
-    @PostMapping(value = "")
+    @PostMapping(value = "/login")
     public ResponseEntity<?> login(@RequestBody @Valid AuthLoginDtoIn loginDtoIn) {
         return responseEntity(() -> {
             return this.authService.login(loginDtoIn);

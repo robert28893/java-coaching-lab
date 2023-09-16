@@ -7,46 +7,48 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.converter.RsaKeyConverters;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
 
 import java.security.interfaces.RSAPrivateKey;
 import java.security.interfaces.RSAPublicKey;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 @Log4j2
 public class SecurityConfig {
-
-    @Value("${jwk.key.public.location}")
-    private String rsaPublicKeyLocation;
-
-    @Value("${jwk.key.private.location}")
-    private String rsaPrivateKeyLocation;
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+                .cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer.configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()))
+//                .cors(cfg -> cfg.disable())
+                .csrf(cfg -> cfg.disable())
                 .authorizeHttpRequests((requests) -> requests
-//                        .requestMatchers("/", "/home").permitAll()
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/auth/login").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .oauth2ResourceServer(configurer -> {
                     configurer.jwt(jwtConfigurer -> {
                         try {
                             jwtConfigurer.decoder(NimbusJwtDecoder.withPublicKey(readPublicKey(
-                                    new FileSystemResource(rsaPublicKeyLocation))).build());
+                                    new ClassPathResource("public.pem"))).build());
                         } catch (Exception e) {
                             log.error("Error: ", e);
                             throw new RuntimeException(e);
@@ -80,8 +82,8 @@ public class SecurityConfig {
         try {
             return new NimbusJwtEncoder(new ImmutableJWKSet<>(
                     new JWKSet(
-                            new RSAKey.Builder(readPublicKey(new FileSystemResource(rsaPublicKeyLocation)))
-                                    .privateKey(readPrivateKey(new FileSystemResource(rsaPrivateKeyLocation)))
+                            new RSAKey.Builder(readPublicKey(new ClassPathResource("public.pem")))
+                                    .privateKey(readPrivateKey(new ClassPathResource("private.pem")))
                                     .build()
                     )
             ));
@@ -89,6 +91,11 @@ public class SecurityConfig {
             log.error("Error: ", e);
             throw new RuntimeException(e);
         }
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
     private static RSAPublicKey readPublicKey(Resource resource) throws Exception {
