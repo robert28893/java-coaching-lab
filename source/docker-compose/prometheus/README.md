@@ -8,3 +8,6 @@ docker compose up -d
 ```bash
 docker compose stop
 ```
+
+# Link console prometheus
+[http://localhost:9090/](http://localhost:9090/)
