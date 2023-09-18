@@ -42,7 +42,7 @@ Sau khi start prometheus, bạn vào giao diện console được kết quả nh
 
 ## Grafana
 
-Với `grafana`, các bạn làm theo hướng dẫn trong thư mực [docker-compose/grafana](../../source/docker-compose/grafana)
+Với `grafana`, các bạn làm theo hướng dẫn trong thư mục [docker-compose/grafana](../../source/docker-compose/grafana)
 
 Sau đó, tại trang console của `grafana` bạn thêm data source là prometheus như sau:
 
@@ -54,8 +54,8 @@ Tham khảo:
 
 ## Spring Actuator
 
-Trong phần này bạn sẽ sử dụng module `spring-actuator` để monitor ứng dụng của bạn. Spring Actuator cung cấp các thông số 
-về auditing, health và metrics.
+Trong phần này bạn sẽ sử dụng module `spring-actuator` để monitor ứng dụng của bạn. Spring Actuator cung cấp các thông
+số về auditing, health và metrics.
 
 Công việc của bạn bao gồm:
 
@@ -91,7 +91,6 @@ management:
 ![](img/grafana_dashboard_1.png)
 
 ![](img/grafana_dashboard_2.png)
-
 
 Tham khảo:
 
