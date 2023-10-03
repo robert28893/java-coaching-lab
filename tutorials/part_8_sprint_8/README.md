@@ -6,6 +6,9 @@
   * [Prometheus](#prometheus)
   * [Grafana](#grafana)
   * [Spring Actuator](#spring-actuator)
+  * [Sentry](#sentry)
+    * [1. Đăng ký và cài đặt project trên Sentry](#1-đăng-ký-và-cài-đặt-project-trên-sentry)
+    * [2. Kết nối spring vói sentry](#2-kết-nối-spring-vói-sentry)
 <!-- TOC -->
 
 ## Overview
@@ -13,7 +16,9 @@
 Trong sprint này, bạn sẽ thêm `monitoring` cho dự án của bạn. Các tham số monitoring gồm các thông số như memory, cpu,
 threads, received requests, ...
 
-Công cụ sử dụng bao gồm: `prometheus`, `grafana` và module `spring-actuator`
+Công cụ sử dụng bao gồm: `prometheus`, `grafana` và module `spring-actuator`.
+
+Kế đến bạn sẽ sử dụng công cụ `sentry` để giám sát các exceptions.
 
 ## Prometheus
 
@@ -100,33 +105,55 @@ Tham khảo:
 
 ## Sentry
 
-Sentry là một nền tảng theo dõi error, exception nhằm giúp các developers giám sát ứng dụng. Trong phần này bạn sẽ cài 
-đặt sentry và kết nối với spring để theo dõi và giám sát các exception.
+Sentry là một nền tảng theo dõi error, exception nhằm giúp các developers giám sát ứng dụng. Trong phần này bạn sẽ
+đăng ký một tài khoản trên [sentry.io](https://sentry.io/), tạo một project trên sentry và sử dụng các cấu hình để kết
+nối với spring cho việc theo dõi và giám sát các exception.
 
-### 1. Cài đặt sentry
+### 1. Đăng ký và cài đặt project trên Sentry
 
-Download sentry source tại [link](https://github.com/getsentry/self-hosted/archive/refs/tags/23.9.1.tar.gz)
+Truy cập vào link sau [link](https://sentry.io/signup/) và đăng ký một tài khoàn trên sentry.
 
-Thực hiện giải nén và cài đặt:
+Tiếp theo, bạn đăng nhập vào sentry và thực hiện thêm mới một project
 
-```shell
-tar xvfz self-hosted-23.9.1.tar.gz
-cd self-hosted-23.9.1
-./install.sh
-```
-Lưu ý cài đặt `username/password` và ghi nhớ 2 thông tin này.
+![](img/sentry_create_project_1.png)
 
-Sau khi cài đặt xong, bạn chạy lệnh sau để start sentry
-
-```shell
-docker compose up -d
-```
-
-Truy cập vào địa chỉ sau:
-
-Sử dụng `username/password` đã set ở bước trên để đăng nhập
-
-[http://127.0.0.1:9000/](http://127.0.0.1:9000/)
+![](img/sentry_create_project_2.png)
 
 ### 2. Kết nối spring vói sentry
 
+Thêm dependency
+
+**pom.xml**
+
+```
+<dependency>
+    <groupId>io.sentry</groupId>
+    <artifactId>sentry-spring-boot-starter-jakarta</artifactId>
+    <version>6.30.0</version>
+</dependency>
+```
+
+Thêm cấu hình
+
+**application.yml**
+
+```yaml
+sentry:
+  dsn: link-dsn-of-sentry-project
+```
+
+Link dsn lấy trong mục settings -> client keys của project
+
+![](img/sentry_dsn.png)
+
+Tiếp theo thực hiện việc capture các exception trong class `@ControllerAdvice`.
+
+Với các mã lỗi `4xx` capture với event level là `INFO`, các mã lỗi `5xx` capture với event level là `ERROR`
+
+Sau khi thực hiện kết quả thu được như sau:
+
+![img.png](img/sentry_issues.png)
+
+Tham khảo:
+
+- [Sample Project](../../source/sample-project)
