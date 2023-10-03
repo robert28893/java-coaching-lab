@@ -11,8 +11,7 @@
 ## Overview
 
 Trong sprint này, bạn sẽ thêm `monitoring` cho dự án của bạn. Các tham số monitoring gồm các thông số như memory, cpu,
-threads,
-received requests, ...
+threads, received requests, ...
 
 Công cụ sử dụng bao gồm: `prometheus`, `grafana` và module `spring-actuator`
 
@@ -98,3 +97,36 @@ Tham khảo:
 - [https://www.baeldung.com/spring-boot-actuators](https://www.baeldung.com/spring-boot-actuators)
 - [https://www.masterspringboot.com/spring-boot-actuator/monitoring-spring-boot-with-micrometer-and-prometheus/](https://www.masterspringboot.com/spring-boot-actuator/monitoring-spring-boot-with-micrometer-and-prometheus/)
 - [Sample Project](../../source/sample-project)
+
+## Sentry
+
+Sentry là một nền tảng theo dõi error, exception nhằm giúp các developers giám sát ứng dụng. Trong phần này bạn sẽ cài 
+đặt sentry và kết nối với spring để theo dõi và giám sát các exception.
+
+### 1. Cài đặt sentry
+
+Download sentry source tại [link](https://github.com/getsentry/self-hosted/archive/refs/tags/23.9.1.tar.gz)
+
+Thực hiện giải nén và cài đặt:
+
+```shell
+tar xvfz self-hosted-23.9.1.tar.gz
+cd self-hosted-23.9.1
+./install.sh
+```
+Lưu ý cài đặt `username/password` và ghi nhớ 2 thông tin này.
+
+Sau khi cài đặt xong, bạn chạy lệnh sau để start sentry
+
+```shell
+docker compose up -d
+```
+
+Truy cập vào địa chỉ sau:
+
+Sử dụng `username/password` đã set ở bước trên để đăng nhập
+
+[http://127.0.0.1:9000/](http://127.0.0.1:9000/)
+
+### 2. Kết nối spring vói sentry
+

@@ -28,7 +28,7 @@ Truy cập vào đường dẫn sau [spring-initializr](https://start.spring.io/
 
 Chọn `Generate` và tải file zip về, sau đó thực hiện giải nén.
 
-### Cấu hình git cho dự án và đẩy lên github
+### Cấu hình git cho dự án và đẩy lên `gitlab`
 
 Tại thư mục của dự án vừa tạo. Thực hiện các lệnh sau
 
@@ -36,7 +36,7 @@ Tại thư mục của dự án vừa tạo. Thực hiện các lệnh sau
 git init -b main # hoặc git init && git symbolic-ref HEAD refs/heads/main
 git add .
 git commit -m "First commit"
-git remote add origin <REMOTE_URL> # REMOTE_URL là link project trên github 
+git remote add origin <REMOTE_URL> # REMOTE_URL là link project trên `gitlab` 
 git push origin main
 ```
 
