@@ -1,0 +1,11 @@
+version: '3.3'
+
+services:
+  redis:
+    image: redis:7.2.1-alpine3.18
+    environment:
+      REDIS_PASSWORD: Redis@123
+    ports:
+      - '6379:6379'
+    restart: on-failure
+    command: /bin/sh -c "redis-server --requirepass $${REDIS_PASSWORD}"

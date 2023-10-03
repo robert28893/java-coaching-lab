@@ -11,6 +11,8 @@
     * [2. Handling exception với `ControlAdvice`](#2-handling-exception-với-controladvice)
     * [3. Throwing exception](#3-throwing-exception)
   * [Caching](#caching)
+    * [1. Caching sử dụng in memory](#1-caching-sử-dụng-in-memory)
+    * [2. Caching sử dụng redis](#2-caching-sử-dụng-redis)
 <!-- TOC -->
 
 ## Overview
@@ -138,8 +140,52 @@ Throwing exception khi gặp các ngoại lệ trong khi xử lý logic.
 
 ## Caching
 
+Trong phần này, bạn sẽ thực hiện việc caching 1 số API xem thông tin. Phần này sẽ chia làm 2 phần nhỏ hơn:
+
+### 1. Caching sử dụng in memory
+
 Tham khảo turotial sau:
 
 [Caching Data with Spring](https://spring.io/guides/gs/caching/)
 
 Hãy thử vận dụng vào việc caching 1 số API như xem thông tin `employer`, `job`, ...
+
+### 2. Caching sử dụng redis
+
+Với caching bằng redis, bạn cần thực hiện các công việc sau
+
+- [ ] Cài đặt `redis server`
+- [ ] Bổ sung dependency và cấu hình trong `spring` để giao tiếp với `redis`
+
+Để cài đặt `redis server`, bạn sử dụng docker để cài đặt theo hướng dẫn trong thư mục
+sau [docker-compose/redis](../../source/docker-compose/redis)
+
+Sau khi cài đặt xong `redis server`, bạn bổ sung dependency và cấu hình cho `spring` như sau:
+
+**pom.xml**
+
+```
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-redis</artifactId>
+</dependency>
+```
+
+**application.yml**
+
+```yml
+spring:
+  cache:
+    type: redis
+    redis:
+      time-to-live: PT2M
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: Redis@123
+```
+
+Tiến hành test lại các api có sử dụng caching và kiểm tra dữ liệu có lưu trong `redis`.
+
+Tham khảo [sample-project](../../source/sample-project)
