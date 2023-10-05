@@ -16,7 +16,7 @@
 
 ## Link console grafana
 
-(http://localhost:3000/)[http://localhost:3000/]
+[http://localhost:3000/](http://localhost:3000/)
 
 ## Generate rsa key
 
