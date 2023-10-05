@@ -46,4 +46,4 @@ reqres:
   url: https://reqres.in
 ---
 sentry:
-  dsn: https://f44f68f8dc4620d0cf51f917b85b49ec@o4505986040528896.ingest.sentry.io/4505986042363904
+  dsn: https://xxx@xxx.ingest.sentry.io/xxx
