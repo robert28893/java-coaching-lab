@@ -32,6 +32,12 @@ jobs:
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+      redis:
+        image: redis:7.2.1-alpine3.18
+        env:
+          REDIS_PASSWORD: Redis@123
+        ports:
+          - 6379:6379
 
     steps:
     - uses: actions/checkout@v3
@@ -47,9 +53,12 @@ jobs:
       run: mysql -h 127.0.0.1 --port=3306 -u root -p"Admin@123" < scripts.sql
     - name: Build and Test with Maven
       env:
-        SPRING_DATASOURCE_URL: 'jdbc:mysql://localhost:3306/sample_db'
+        SPRING_DATASOURCE_URL: 'jdbc:mysql://127.0.0.1:3306/sample_db'
         SPRING_DATASOURCE_USERNAME: 'root'
         SPRING_DATASOURCE_PASSWORD: 'Admin@123'
         SPRING_JPA_HIBERNATE_DDLAUTO: 'update'
+        SPRING_DATA_REDIS_HOST: '127.0.0.1'
+        SPRING_DATA_REDIS_PORT: '6379'
+        SPRING_DATA_REDIS_PASSWORD: 'Redis@123'
       working-directory: source/sample-project
       run: ./mvnw -B package --file pom.xml
