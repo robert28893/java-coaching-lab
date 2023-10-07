@@ -1,5 +1,5 @@
 # Maven build container
-FROM openjdk:17-jdk-slim AS maven_build
+FROM eclipse-temurin:17-jdk AS maven_build
 WORKDIR /tmp/
 COPY .mvn /tmp/.mvn/
 COPY mvnw /tmp/

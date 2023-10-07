@@ -11,8 +11,12 @@ name: Java CI with Maven
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - source/sample-project
   pull_request:
     branches: [ "main" ]
+    paths:
+      - source/sample-project
 
 jobs:
   build:
@@ -28,6 +32,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
+      working-directory: source/sample-project
       run: ./mvnw -B package --file pom.xml
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
