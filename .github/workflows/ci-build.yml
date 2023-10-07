@@ -42,6 +42,8 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build and Test with Maven
+      env:
+        SPRING_JPA_HIBERNATE_DDLAUTO: 'none'
       working-directory: source/sample-project
       run: ./mvnw -B package --file pom.xml
 
