@@ -44,7 +44,7 @@ jobs:
     - name: Download SQL scripts
       run: wget -O scripts.sql https://raw.githubusercontent.com/robert28893/java-coaching-lab/main/source/docker-compose/mysql/db-dumps/job_db.sql
     - name: Import database
-      run: mysql -h mysql -u root -p"Admin@123" < scripts.sql
+      run: mysql -h 127.0.0.1 --port=3306 -u root -p"Admin@123" < scripts.sql
     - name: Build and Test with Maven
       env:
         SPRING_DATASOURCE_URL: 'jdbc:mysql://localhost:3306/sample_db'
