@@ -4,8 +4,10 @@
 * [Sprint 2](#sprint-2)
   * [Overview](#overview)
   * [Khởi tạo project](#khởi-tạo-project)
+    * [Tạo repository trên github](#tạo-repository-trên-github)
     * [Khởi tạo project bằng công cụ spring initializr](#khởi-tạo-project-bằng-công-cụ-spring-initializr)
-    * [Cấu hình git cho dự án và đẩy lên `gitlab`](#cấu-hình-git-cho-dự-án-và-đẩy-lên-gitlab)
+    * [Đẩy source code lên `github`](#đẩy-source-code-lên-github)
+    * [Cài đặt `Branch protection rules` cho repository](#cài-đặt-branch-protection-rules-cho-repository)
   * [Làm quen với Spring Framework](#làm-quen-với-spring-framework)
 <!-- TOC -->
 
@@ -13,12 +15,21 @@
 
 Trong sprint này chúng ta sẽ làm các công việc sau:
 
+- Tạo và cài đặt `repository` trên github.
 - Tìm hiểu cách khởi tạo 1 project Spring sử dụng công cụ Spring initializr.
 - Sau đó thực hiện đẩy source code của dự án lên github.
 - Cuối cùng chúng ta tìm hiểu về Spring framework bằng cách tham gia 1 vài courses trước khi bắt tay vào xây dựng
   project ở các Sprint sau.
 
 ## Khởi tạo project
+
+### Tạo repository trên github
+
+Bạn tạo `repository` trên github và nhập các thông tin như sau:
+
+![](img/new_repository.png)
+
+Các tham số còn lại đề mặc định và nhấn `Create repository`.
 
 ### Khởi tạo project bằng công cụ spring initializr
 
@@ -28,20 +39,96 @@ Truy cập vào đường dẫn sau [spring-initializr](https://start.spring.io/
 
 Chọn `Generate` và tải file zip về, sau đó thực hiện giải nén.
 
-### Cấu hình git cho dự án và đẩy lên `github`
+Tiếp theo bạn tạo thêm file với đường dẫn và nội dung như sau:
 
-Tại thư mục của dự án vừa tạo. Thực hiện các lệnh sau
+`.github/workflows/ci-build.yml`
+
+```yaml
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0.33
+        env:
+          MYSQL_ROOT_PASSWORD: Admin@123
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+      redis:
+        image: redis:7.2.1-alpine3.18
+        env:
+          REDIS_PASSWORD: Redis@123
+        ports:
+          - 6379:6379
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Download SQL scripts
+        run: wget -O scripts.sql https://raw.githubusercontent.com/robert28893/java-coaching-lab/main/source/docker-compose/mysql/db-dumps/job_db.sql
+      - name: Import database
+        run: mysql -h 127.0.0.1 --port=3306 -u root -p"Admin@123" < scripts.sql
+      - name: Build and Test with Maven
+        env:
+          SPRING_DATASOURCE_URL: 'jdbc:mysql://127.0.0.1:3306/job_db'
+          SPRING_DATASOURCE_USERNAME: 'root'
+          SPRING_DATASOURCE_PASSWORD: 'Admin@123'
+          SPRING_JPA_HIBERNATE_DDLAUTO: 'none'
+          SPRING_DATA_REDIS_HOST: '127.0.0.1'
+          SPRING_DATA_REDIS_PORT: '6379'
+          SPRING_DATA_REDIS_PASSWORD: 'Redis@123'
+        run: ./mvnw -B package --file pom.xml
+```
+
+### Đẩy source code lên `github`
+
+Tại thư mục của dự án vừa tạo. Thực hiện các lệnh sau:
 
 ```sh
-git init -b main # hoặc git init && git symbolic-ref HEAD refs/heads/main
+git init -b main
 git add .
 git commit -m "First commit"
 git remote add origin <REMOTE_URL> # REMOTE_URL là link project trên `gitlab` 
 git push origin main
 ```
 
-Tiếp theo bạn tiến hành cài đặt `Branch protection rules`
+Sau khi push code thành công. Tại tab `Actions` trên github bạn sẽ thấy kết quả `job` chạy thành công như sau:
 
+![](img/github_actions.png)
+
+### Cài đặt `Branch protection rules` cho repository
+
+Tiếp theo bạn tiến hành cài đặt `Branch protection rules` cho `repository` trên github
+
+Vào `settings->branches` chọn `Add rule`
+
+Tại `Branch name pattern` nhập `main`
+
+![](img/branch_protection_rule_1.png)
+
+Tiếp theo phần `Protect matching branches` các bạn tích vào các phần sau:
+
+![](img/branch_protection_rule_2.png)
+
+![](img/branch_protection_rule_3.png)
+
+Các phần còn lại để mặc định và nhấn `save`.
 
 ## Làm quen với Spring Framework
 

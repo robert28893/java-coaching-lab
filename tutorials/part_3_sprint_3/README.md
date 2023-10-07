@@ -184,6 +184,15 @@ Xem hướng dẫn tại thư mục [docker-compose/mysql](../../source/docker-c
 
 Sau khi đã start và import database, công việc tiếp theo của bạn là:
 
+- Thêm dependency trong `pom.xml`
+
+```
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+```
+
 - Thêm kết nối database
 - Khai báo các `entity`
 - Khai báo các `repository`
