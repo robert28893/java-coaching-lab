@@ -5,7 +5,7 @@
   * [Overview](#overview)
   * [Khởi tạo project](#khởi-tạo-project)
     * [Khởi tạo project bằng công cụ spring initializr](#khởi-tạo-project-bằng-công-cụ-spring-initializr)
-    * [Cấu hình git cho dự án và đẩy lên github](#cấu-hình-git-cho-dự-án-và-đẩy-lên-github)
+    * [Cấu hình git cho dự án và đẩy lên `gitlab`](#cấu-hình-git-cho-dự-án-và-đẩy-lên-gitlab)
   * [Làm quen với Spring Framework](#làm-quen-với-spring-framework)
 <!-- TOC -->
 
@@ -28,7 +28,7 @@ Truy cập vào đường dẫn sau [spring-initializr](https://start.spring.io/
 
 Chọn `Generate` và tải file zip về, sau đó thực hiện giải nén.
 
-### Cấu hình git cho dự án và đẩy lên `gitlab`
+### Cấu hình git cho dự án và đẩy lên `github`
 
 Tại thư mục của dự án vừa tạo. Thực hiện các lệnh sau
 
@@ -39,6 +39,9 @@ git commit -m "First commit"
 git remote add origin <REMOTE_URL> # REMOTE_URL là link project trên `gitlab` 
 git push origin main
 ```
+
+Tiếp theo bạn tiến hành cài đặt `Branch protection rules`
+
 
 ## Làm quen với Spring Framework
 
