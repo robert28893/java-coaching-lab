@@ -41,12 +41,15 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+    - name: Download SQL scripts
+      run: wget -O scripts.sql https://raw.githubusercontent.com/robert28893/java-coaching-lab/main/source/docker-compose/mysql/db-dumps/job_db.sql
+    - name: Import database
+      run: mysql -h mysql -u root -p"Admin@123" < scripts.sql
     - name: Build and Test with Maven
       env:
+        SPRING_DATASOURCE_URL: 'jdbc:mysql://localhost:3306/sample_db'
+        SPRING_DATASOURCE_USERNAME: 'root'
+        SPRING_DATASOURCE_PASSWORD: 'Admin@123'
         SPRING_JPA_HIBERNATE_DDLAUTO: 'none'
       working-directory: source/sample-project
       run: ./mvnw -B package --file pom.xml
-
-    # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
-    - name: Update dependency graph
-      uses: advanced-security/maven-dependency-submission-action@571e99aab1055c2e71a1e2309b9691de18d6b7d6
