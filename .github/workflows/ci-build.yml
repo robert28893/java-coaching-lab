@@ -23,6 +23,16 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql:8.0.33
+        env:
+          MYSQL_ROOT_PASSWORD: Admin@123
+          MYSQL_DATABASE: sample_db
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 17
@@ -31,7 +41,7 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
+    - name: Build and Test with Maven
       working-directory: source/sample-project
       run: ./mvnw -B package --file pom.xml
 
