@@ -50,6 +50,6 @@ jobs:
         SPRING_DATASOURCE_URL: 'jdbc:mysql://localhost:3306/sample_db'
         SPRING_DATASOURCE_USERNAME: 'root'
         SPRING_DATASOURCE_PASSWORD: 'Admin@123'
-        SPRING_JPA_HIBERNATE_DDLAUTO: 'none'
+        SPRING_JPA_HIBERNATE_DDLAUTO: 'update'
       working-directory: source/sample-project
       run: ./mvnw -B package --file pom.xml
