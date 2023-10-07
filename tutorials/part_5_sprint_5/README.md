@@ -17,7 +17,7 @@
 
 ## Overview
 
-Trong sprint này bạn sẽ triển khai một số API liên quan đến báo cáo, chỉ số. Những API này sẽ yêu cầu các truy vấn phức,
+Trong sprint này bạn sẽ triển khai một số API liên quan đến báo cáo, chỉ số. Những API này sẽ yêu cầu các truy vấn,
 xử lý logic phức tạp hơn.
 
 Tiếp theo bạn sẽ khai báo một `Exception` dùng chung cho dự án, cũng như triển khai exception handler dựa
