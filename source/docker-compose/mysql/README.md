@@ -21,3 +21,7 @@ docker exec mysqldb_mysql-db_1 sh -c 'exec mysqldump --all-databases -uroot -p"A
 ```bash
 docker exec -i mysqldb_mysql-db_1 sh -c 'exec mysql -uroot -p"Admin@123"' < db-dumps/all-databases.sql
 ```
+
+# Cài đặt MySQL Workbench trên Ubuntu
+
+Xem hướng dẫn tại link sau: [Cài mysql workbench](https://robert28893.github.io/blog/databases/mysql/install-mysql-workbench/)
