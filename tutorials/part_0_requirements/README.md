@@ -129,7 +129,7 @@ entities này.
 
 - Dự án được chia thành các sprints.
 - Mỗi sprint sẽ kéo dài từ 1 - 2 tuần.
-- Mỗi sprint sẽ gồm nhiều tasks. Chúng ta follow theo hướng dẫn trong thư mục của từng sprint tương ứng.
+- Mỗi sprint sẽ gồm nhiều tasks. Chúng ta follow theo hướng dẫn trong thư mục của từng phần tương ứng.
 - Mỗi bạn cần tạo một `repository` trên github cho dự án và add mình vào `repository` này.
 - Kết thúc mỗi sprint các bán tiến hành tạo merge request và merge vào nhánh `main`
 

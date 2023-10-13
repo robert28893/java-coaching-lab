@@ -1,7 +1,7 @@
-# Sprint 3
+# Part 3
 
 <!-- TOC -->
-* [Sprint 3](#sprint-3)
+* [Part 3](#part-3)
   * [Overview](#overview)
   * [Mô tả](#mô-tả)
     * [Employer](#employer)
@@ -19,7 +19,7 @@
 
 ## Overview
 
-Trong sprint này, bạn sẽ thiết kế bộ API cho nghiệp vụ xoay quanh enitity `employer`.
+Trong phần này, bạn sẽ thiết kế bộ API cho nghiệp vụ xoay quanh enitity `employer`.
 
 Từ mô tả non-technical bạn sẽ định nghĩa và triền khai các API: in/output, resource naming.
 

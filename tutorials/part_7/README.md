@@ -1,7 +1,7 @@
-# Sprint 7
+# Part 7
 
 <!-- TOC -->
-* [Sprint 7](#sprint-7)
+* [Part 7](#part-7)
   * [Overview](#overview)
   * [API docs](#api-docs)
   * [Readme](#readme)
@@ -10,7 +10,7 @@
 
 ## Overview
 
-Trong sprint này bạn sẽ bổ sung API docs cho project của bạn bằng việc sử dụng module `springdoc-openapi`
+Trong phần này bạn sẽ bổ sung API docs cho project của bạn bằng việc sử dụng module `springdoc-openapi`
 kết hợp cùng `swagger`.
 
 Tiếp theo, bạn sẽ học cách viết một file `README.md` mô tả dự án của bạn.

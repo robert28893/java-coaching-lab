@@ -1,7 +1,7 @@
-# Sprint 5
+# Part 5
 
 <!-- TOC -->
-* [Sprint 5](#sprint-5)
+* [Part 5](#part-5)
   * [Overview](#overview)
   * [Mô tả](#mô-tả)
     * [1. Xem chỉ số chung của hệ thống theo ngày](#1-xem-chỉ-số-chung-của-hệ-thống-theo-ngày)
@@ -17,7 +17,7 @@
 
 ## Overview
 
-Trong sprint này bạn sẽ triển khai một số API liên quan đến báo cáo, chỉ số. Những API này sẽ yêu cầu các truy vấn,
+Trong phần này bạn sẽ triển khai một số API liên quan đến báo cáo, chỉ số. Những API này sẽ yêu cầu các truy vấn,
 xử lý logic phức tạp hơn.
 
 Tiếp theo bạn sẽ khai báo một `Exception` dùng chung cho dự án, cũng như triển khai exception handler dựa
