@@ -1,7 +1,7 @@
-# Sprint 8
+# Part 8
 
 <!-- TOC -->
-* [Sprint 8](#sprint-8)
+* [Part 8](#part-8)
   * [Overview](#overview)
   * [Prometheus](#prometheus)
   * [Grafana](#grafana)
@@ -13,7 +13,7 @@
 
 ## Overview
 
-Trong sprint này, bạn sẽ thêm `monitoring` cho dự án của bạn. Các tham số monitoring gồm các thông số như memory, cpu,
+Trong phần này, bạn sẽ thêm `monitoring` cho dự án của bạn. Các tham số monitoring gồm các thông số như memory, cpu,
 threads, received requests, ...
 
 Công cụ sử dụng bao gồm: `prometheus`, `grafana` và module `spring-actuator`.

@@ -1,7 +1,7 @@
-# Sprint 6
+# Part 6
 
 <!-- TOC -->
-* [Sprint 6](#sprint-6)
+* [Part 6](#part-6)
   * [Overview](#overview)
   * [Logging](#logging)
   * [Security](#security)
@@ -9,7 +9,7 @@
 
 ## Overview
 
-Trong sprint này bạn sẽ tìm hiểu về 2 module `logging` và `security`.
+Trong phần này bạn sẽ tìm hiểu về 2 module `logging` và `security`.
 
 Với `logging`, bạn sẽ học cách khai báo `logger`, ghi logs, cấu hình logging level, ...
 
@@ -20,7 +20,7 @@ Với `security`, bạn sẽ tìm hiểu cách `authenticate` API bằng việc 
 Trong phần này bạn cần thực hiện những tasks sau:
 
 - [ ] Thêm một `logger` cho class `ApiExceptionHandler` đã khai báo
-  ở [sprint 5](../part_5_sprint_5/README.md#2-handling-exception-với-controladvice)
+  ở [part 5](../part_5/README.md#2-handling-exception-với-controladvice)
 
 - [ ] Bổ sung in log `debug` cho các `exception` trả về mã lỗi `4xx`. Với mã lỗi `5xx` thì in log `error`.
 

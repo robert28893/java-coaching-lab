@@ -1,7 +1,7 @@
-# Sprint 1
+# Part 1
 
 <!-- TOC -->
-* [Sprint 1](#sprint-1)
+* [Part 1](#part-1)
   * [Overview](#overview)
   * [Linux](#linux)
   * [Git](#git)
@@ -13,10 +13,10 @@
 
 ## Overview
 
-Trong sprint này bạn sẽ trang bị, ôn tập lại các kiến thức nền tảng về Backend Engineer.
+Trong phần này bạn sẽ trang bị, ôn tập lại các kiến thức nền tảng về Backend Engineer.
 
-Thông qua các courses, exercises, các bạn sẽ được thực hành và ôn luyện lại các chủ đề quan trọng: 
-linux, git, sql, java, REST API, ...    
+Thông qua các courses, exercises, các bạn sẽ được thực hành và ôn luyện lại các chủ đề quan trọng:
+linux, git, sql, java, REST API, ...
 
 Dưới đây là danh sách các courses, exercises, tutorials, ... cho từng chủ đề.
 

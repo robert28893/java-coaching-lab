@@ -4,7 +4,7 @@ Project này chứa các source code, tutorials của bài lab liên quan đến
 
 ## 1. Tutorials
 
-Thư mục chứa các hướng dẫn cho từng sprint.
+Thư mục chứa các yêu cầu và các hướng dẫn.
 
 ## 2. Source
 

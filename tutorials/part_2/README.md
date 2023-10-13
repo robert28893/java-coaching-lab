@@ -1,7 +1,7 @@
-# Sprint 2
+# Part 2
 
 <!-- TOC -->
-* [Sprint 2](#sprint-2)
+* [Part 2](#part-2)
   * [Overview](#overview)
   * [Khởi tạo project](#khởi-tạo-project)
     * [Tạo repository trên github](#tạo-repository-trên-github)
@@ -13,13 +13,13 @@
 
 ## Overview
 
-Trong sprint này chúng ta sẽ làm các công việc sau:
+Trong phần này chúng ta sẽ làm các công việc sau:
 
 - Tạo và cài đặt `repository` trên github.
 - Tìm hiểu cách khởi tạo 1 project Spring sử dụng công cụ Spring initializr.
 - Sau đó thực hiện đẩy source code của dự án lên github.
 - Cuối cùng chúng ta tìm hiểu về Spring framework bằng cách tham gia 1 vài courses trước khi bắt tay vào xây dựng
-  project ở các Sprint sau.
+  project ở các phần sau.
 
 ## Khởi tạo project
 

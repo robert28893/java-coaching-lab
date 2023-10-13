@@ -1,7 +1,7 @@
-# Sprint 4
+# Part 4
 
 <!-- TOC -->
-* [Sprint 4](#sprint-4)
+* [Part 4](#part-4)
   * [Overview](#overview)
   * [Mô tả](#mô-tả)
     * [Job](#job)
@@ -26,7 +26,7 @@
 
 ## Overview
 
-Trong sprint này bạn sẽ tiếp tục triển khai các bộ API liên quan đến các entities `job`, `seeker`, `resume`.
+Trong phần này bạn sẽ tiếp tục triển khai các bộ API liên quan đến các entities `job`, `seeker`, `resume`.
 
 ## Mô tả
 
