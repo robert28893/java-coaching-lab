@@ -27,7 +27,7 @@ management:
 logging:
   level:
     root: INFO
-    org.springframework.security: trace
+    org.springframework.security: DEBUG
 
 ---
 spring:
