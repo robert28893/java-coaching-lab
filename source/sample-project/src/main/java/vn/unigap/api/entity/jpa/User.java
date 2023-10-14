@@ -1,4 +1,4 @@
-package vn.unigap.api.entity;
+package vn.unigap.api.entity.jpa;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -9,13 +9,13 @@ import org.springframework.stereotype.Service;
 import vn.unigap.api.dto.in.PageDtoIn;
 import vn.unigap.api.dto.in.UpdateUserDtoIn;
 import vn.unigap.api.dto.in.UserDtoIn;
-import vn.unigap.api.repository.user.UserRepository;
+import vn.unigap.api.repository.jpa.user.UserRepository;
 import vn.unigap.common.Common;
 import vn.unigap.common.errorcode.ErrorCode;
 import vn.unigap.common.exception.ApiException;
 import vn.unigap.api.dto.out.PageDtoOut;
 import vn.unigap.api.dto.out.UserDtoOut;
-import vn.unigap.api.entity.User;
+import vn.unigap.api.entity.jpa.User;
 
 @Service
 public class UserServiceImpl implements UserService {

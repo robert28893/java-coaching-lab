@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import jakarta.servlet.DispatcherType;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import vn.unigap.api.entity.mongodb.RequestResponse;
 import vn.unigap.api.service.LoggingService;
 import vn.unigap.common.Common;
 
@@ -24,9 +25,7 @@ public class LogInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        String requestId = Common.uuid();
-        request.setAttribute("REQUEST_ID", requestId);
-        System.out.println("REQUEST_ID: " + requestId);
+
         if (DispatcherType.REQUEST.name().equals(request.getDispatcherType().name()) && request.getMethod().equals(HttpMethod.GET.name())) {
             loggingService.logRequest(request, null);
         }

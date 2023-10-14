@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 import vn.unigap.api.service.LoggingService;
 
-@ControllerAdvice(basePackages = {"vn.unigap.api.controller"})
+@ControllerAdvice(basePackages = {"vn.unigap.api.controller", "vn.unigap.common.exception"})
 public class CustomResponseBodyAdviceAdapter implements ResponseBodyAdvice<Object> {
     
     private final LoggingService loggingService;

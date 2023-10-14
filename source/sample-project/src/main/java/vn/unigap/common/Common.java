@@ -28,4 +28,8 @@ public class Common {
     public static Date currentTime() {
         return Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());
     }
+
+    public static LocalDateTime currentDateTime() {
+        return LocalDateTime.now();
+    }
 }
