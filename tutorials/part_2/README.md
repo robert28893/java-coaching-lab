@@ -71,6 +71,18 @@ jobs:
           REDIS_PASSWORD: Redis@123
         ports:
           - 6379:6379
+      mongodb:
+        image: mongodb/mongodb-community-server:7.0.1-ubuntu2204
+        env:
+          MONGO_INITDB_ROOT_USERNAME: root
+          MONGO_INITDB_ROOT_PASSWORD: Mongo@123
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd="mongosh mongodb://localhost:27017 --eval \"db.runCommand({ ping: 1 })\"" 
+          --health-interval=10s 
+          --health-timeout=5s 
+          --health-retries=3 
 
     steps:
       - uses: actions/checkout@v3
@@ -84,6 +96,15 @@ jobs:
         run: wget -O scripts.sql https://raw.githubusercontent.com/robert28893/java-coaching-lab/main/source/docker-compose/mysql/db-dumps/job_db.sql
       - name: Import database
         run: mysql -h 127.0.0.1 --port=3306 -u root -p"Admin@123" < scripts.sql
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install mongosh
+        run: npm install -g mongosh
+      - name: Setup database and user in mongodb
+        run: >-
+          mongosh mongodb://127.0.0.1:27017 -u root -p Mongo@123 --eval "use sample_db;" --eval "db.createUser({user: 'user', pwd: 'User123', roles : [{role: 'dbOwner', db: 'sample_db'}]});"  
       - name: Build and Test with Maven
         env:
           SPRING_DATASOURCE_URL: 'jdbc:mysql://127.0.0.1:3306/job_db'
@@ -93,6 +114,11 @@ jobs:
           SPRING_DATA_REDIS_HOST: '127.0.0.1'
           SPRING_DATA_REDIS_PORT: '6379'
           SPRING_DATA_REDIS_PASSWORD: 'Redis@123'
+          SPRING_DATA_MONGODB_HOST: '127.0.0.1'
+          SPRING_DATA_MONGODB_PORT: '27017'
+          SPRING_DATA_MONGODB_USERNAME: 'user'
+          SPRING_DATA_MONGODB_PASSWORD: 'User123'
+          SPRING_DATA_MONGODB_DATABASE: 'sample_db'
         run: ./mvnw -B package --file pom.xml
 ```
 
