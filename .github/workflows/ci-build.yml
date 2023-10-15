@@ -60,7 +60,7 @@ jobs:
     - name: Import database
       run: mysql -h 127.0.0.1 --port=3306 -u root -p"Admin@123" < scripts.sql
     - name: Setup database and user in mongodb
-      run: "mongosh mongodb://localhost:27017 -u root -p Mongo@123 --eval \"use sample_db;\" --eval \"db.createUser({user: 'user', pwd: 'User123', roles : [{role: 'dbOwner', db: 'sample_db'}]});\""
+      run: "docker exec -ti mongodb mongosh mongodb://localhost:27017 -u root -p Mongo@123 --eval \"use sample_db;\" --eval \"db.createUser({user: 'user', pwd: 'User123', roles : [{role: 'dbOwner', db: 'sample_db'}]});\""
     - name: Build and Test with Maven
       env:
         SPRING_DATASOURCE_URL: 'jdbc:mysql://127.0.0.1:3306/sample_db'
