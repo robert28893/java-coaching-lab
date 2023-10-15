@@ -66,12 +66,12 @@ jobs:
     - name: Install Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '14'
+        node-version: '18'
     - name: Install mongosh
       run: npm install -g mongosh
     - name: Setup database and user in mongodb
       run: >-
-        mongosh mongodb://localhost:27017 -u root -p Mongo@123 --eval "use sample_db;" --eval "db.createUser({user: 'user', pwd: 'User123', roles : [{role: 'dbOwner', db: 'sample_db'}]});"
+        mongosh mongodb://127.0.0.1:27017 -u root -p Mongo@123 --eval "use sample_db;" --eval "db.createUser({user: 'user', pwd: 'User123', roles : [{role: 'dbOwner', db: 'sample_db'}]});"
     - name: Build and Test with Maven
       env:
         SPRING_DATASOURCE_URL: 'jdbc:mysql://127.0.0.1:3306/sample_db'
