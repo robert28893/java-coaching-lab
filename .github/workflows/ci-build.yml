@@ -45,7 +45,11 @@ jobs:
           MONGO_INITDB_ROOT_PASSWORD: Mongo@123
         ports:
           - 27017:27017
-        options: "--health-cmd=\"mongosh mongodb://localhost:27017 --eval \\\"db.runCommand({ ping: 1 })\\\"\" --health-interval=10s --health-timeout=5s --health-retries=3"
+        options: >-
+          --health-cmd="mongosh mongodb://localhost:27017 --eval \"db.runCommand({ ping: 1 })\"" 
+          --health-interval=10s 
+          --health-timeout=5s 
+          --health-retries=3
 
     steps:
     - uses: actions/checkout@v3
@@ -59,8 +63,15 @@ jobs:
       run: wget -O scripts.sql https://raw.githubusercontent.com/robert28893/java-coaching-lab/main/source/docker-compose/mysql/db-dumps/job_db.sql
     - name: Import database
       run: mysql -h 127.0.0.1 --port=3306 -u root -p"Admin@123" < scripts.sql
+    - name: Install Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+    - name: Install mongosh
+      run: npm install -g mongosh
     - name: Setup database and user in mongodb
-      run: "docker exec -ti mongodb mongosh mongodb://localhost:27017 -u root -p Mongo@123 --eval \"use sample_db;\" --eval \"db.createUser({user: 'user', pwd: 'User123', roles : [{role: 'dbOwner', db: 'sample_db'}]});\""
+      run: >-
+        mongosh mongodb://localhost:27017 -u root -p Mongo@123 --eval "use sample_db;" --eval "db.createUser({user: 'user', pwd: 'User123', roles : [{role: 'dbOwner', db: 'sample_db'}]});"
     - name: Build and Test with Maven
       env:
         SPRING_DATASOURCE_URL: 'jdbc:mysql://127.0.0.1:3306/sample_db'
