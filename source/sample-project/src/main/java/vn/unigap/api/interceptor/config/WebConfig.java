@@ -7,14 +7,14 @@ import vn.unigap.api.interceptor.LogInterceptor;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-	private final LogInterceptor logInterceptor;
+    private final LogInterceptor logInterceptor;
 
-	public WebConfig(LogInterceptor logInterceptor) {
-		this.logInterceptor = logInterceptor;
-	}
+    public WebConfig(LogInterceptor logInterceptor) {
+        this.logInterceptor = logInterceptor;
+    }
 
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(logInterceptor);
-	}
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(logInterceptor);
+    }
 }
