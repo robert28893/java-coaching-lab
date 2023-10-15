@@ -5,7 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.extern.java.Log;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vn.unigap.api.entity.mongodb.RequestResponse;
@@ -17,7 +17,7 @@ import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
 @Service
-@Log
+@Log4j2
 public class LoggingServiceImpl implements LoggingService {
 
     @Autowired
@@ -47,18 +47,6 @@ public class LoggingServiceImpl implements LoggingService {
         reqres.setParameters(buildParametersMap(httpServletRequest));
         reqres.setRequestHeaders(buildHeadersMap(httpServletRequest));
 
-//        StringBuilder stringBuilder = new StringBuilder();
-//        Map<String, String> parameters = buildParametersMap(httpServletRequest);
-
-//        stringBuilder.append("REQUEST ");
-//        stringBuilder.append("method=[").append(httpServletRequest.getMethod()).append("] ");
-//        stringBuilder.append("path=[").append(httpServletRequest.getRequestURI()).append("] ");
-//        stringBuilder.append("headers=[").append(buildHeadersMap(httpServletRequest)).append("] ");
-
-//        if (!parameters.isEmpty()) {
-//            stringBuilder.append("parameters=[").append(parameters).append("] ");
-//        }
-
         if (body != null) {
             try {
                 reqres.setRequestBody(objectMapper.readValue(
@@ -66,10 +54,8 @@ public class LoggingServiceImpl implements LoggingService {
                         new TypeReference<>() {
                         }));
             } catch (JsonProcessingException e) {
-                log.warning("could not parse request body: " + body);
+                log.warn("could not parse request body: " + body);
             }
-//            stringBuilder.append("body=[" + objectMapper.convertValue(body, new TypeReference<Map<String, Object>>() {
-//            }) + "]");
         }
 
         log.info("REQUEST: " + reqres);
@@ -78,8 +64,8 @@ public class LoggingServiceImpl implements LoggingService {
     @Override
     public void logResponse(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object body) {
         if (httpServletRequest.getAttribute(Constants.REQUEST_RESPONSE_ATTRIBUTE) == null) {
-            log.warning("Illegal state, no have request response attribute");
-            return;
+            // case when request not passed to controller because unauthenticated. So we must recreate request
+            logRequest(httpServletRequest, null);
         }
 
         RequestResponse reqres = (RequestResponse) httpServletRequest.getAttribute(Constants.REQUEST_RESPONSE_ATTRIBUTE);
@@ -92,27 +78,14 @@ public class LoggingServiceImpl implements LoggingService {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
-//        StringBuilder stringBuilder = new StringBuilder();
-//        stringBuilder.append("RESPONSE ");
-//        stringBuilder.append("method=[").append(httpServletRequest.getMethod()).append("] ");
-//        stringBuilder.append("path=[").append(httpServletRequest.getRequestURI()).append("] ");
-//        stringBuilder.append("responseHeaders=[").append(buildHeadersMap(httpServletResponse)).append("] ");
-//        try {
-//            stringBuilder.append("responseBody=[")
-//                    .append(objectMapper.readValue(objectMapper.writeValueAsString(body), new TypeReference<Map<String, Object>>() {
-//                    }))
-//                    .append("] ");
-//        } catch (JsonProcessingException e) {
-//            log.warning("could not parse response body: " + body);
-//        }
-
-//        log.info(stringBuilder.toString());
         log.info("RESPONSE: " + reqres);
+
+        // run async for inserting into mongodb
         CompletableFuture.runAsync(() -> {
             try {
                 requestResponseRepository.save(reqres);
             } catch (Exception e) {
-                e.printStackTrace();
+                log.error("ERROR: could not save reqres into mongodb: ", e);
             }
         });
     }

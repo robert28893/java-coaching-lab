@@ -33,8 +33,6 @@ public class CustomResponseBodyAdviceAdapter implements ResponseBodyAdvice<Objec
             Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
         if (serverHttpRequest instanceof ServletServerHttpRequest && serverHttpResponse instanceof ServletServerHttpResponse) {
             HttpServletRequest request = ((ServletServerHttpRequest) serverHttpRequest).getServletRequest();
-            String logId = (String) request.getAttribute("REQUEST_ID");
-            System.out.println("REQUEST_ID: " + logId);
             loggingService.logResponse(request,
                     ((ServletServerHttpResponse) serverHttpResponse).getServletResponse(), o);
         }

@@ -264,7 +264,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = AuthenticationException.class)
     public ResponseEntity<?> handleAuthException(AuthenticationException e) {
-        e.printStackTrace();
+//        e.printStackTrace();
         captureException(e, HttpStatus.UNAUTHORIZED);
         return responseEntity(ErrorCode.UNAUTHORIZED, HttpStatus.UNAUTHORIZED, e.getMessage());
     }
