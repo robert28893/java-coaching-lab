@@ -26,8 +26,8 @@ management:
         include: '*'
 logging:
   level:
-    root: DEBUG
-    org.springframework.security: trace
+    root: INFO
+    org.springframework.security: DEBUG
 
 ---
 spring:
@@ -41,6 +41,13 @@ spring:
       host: localhost
       port: 6379
       password: Redis@123
+    mongodb:
+      host: "localhost"
+      port: 27017
+      username: "user" # use have to create this user
+      password: "User123"
+      database: "sample_db"
+#      uri: "mongodb://localhost:27017/sample_db"
 ---
 reqres:
   url: https://reqres.in
