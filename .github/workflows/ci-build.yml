@@ -52,6 +52,20 @@ jobs:
           --health-retries=3
 
     steps:
+    - name: Import database
+      run: |
+        wget -O scripts.sql https://raw.githubusercontent.com/robert28893/java-coaching-lab/main/source/docker-compose/mysql/db-dumps/job_db.sql
+        mysql -h 127.0.0.1 --port=3306 -u root -p"Admin@123" < scripts.sql
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+    - name: Setup database and user in mongodb
+      run: |
+        npm install -g mongosh
+        mongosh mongodb://127.0.0.1:27017 -u root -p Mongo@123 --eval "use sample_db;" --eval "db.createUser({user: 'user', pwd: 'User123', roles : [{role: 'dbOwner', db: 'sample_db'}]});"
+
     - uses: actions/checkout@v3
     - name: Set up JDK 17
       uses: actions/setup-java@v3
@@ -59,19 +73,6 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Download SQL scripts
-      run: wget -O scripts.sql https://raw.githubusercontent.com/robert28893/java-coaching-lab/main/source/docker-compose/mysql/db-dumps/job_db.sql
-    - name: Import database
-      run: mysql -h 127.0.0.1 --port=3306 -u root -p"Admin@123" < scripts.sql
-    - name: Install Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-    - name: Install mongosh
-      run: npm install -g mongosh
-    - name: Setup database and user in mongodb
-      run: >-
-        mongosh mongodb://127.0.0.1:27017 -u root -p Mongo@123 --eval "use sample_db;" --eval "db.createUser({user: 'user', pwd: 'User123', roles : [{role: 'dbOwner', db: 'sample_db'}]});"
     - name: Build and Test with Maven
       env:
         SPRING_DATASOURCE_URL: 'jdbc:mysql://127.0.0.1:3306/sample_db'
