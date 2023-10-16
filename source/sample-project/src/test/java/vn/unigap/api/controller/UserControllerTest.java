@@ -88,7 +88,7 @@ class UserControllerTest {
                 .queryParam("pageSize", pageDtoIn.getPageSize())
                 .toUriString();
 
-        System.out.println("ACCESS_TOKEN: " + accessToken);
+        System.out.println("ACCESS TOKEN: " + accessToken);
 
         mockMvc.perform(MockMvcRequestBuilders.get(uri)
                         .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken))
