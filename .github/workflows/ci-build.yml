@@ -87,4 +87,4 @@ jobs:
         SPRING_DATA_MONGODB_PASSWORD: 'User123'
         SPRING_DATA_MONGODB_DATABASE: 'sample_db'
       working-directory: source/sample-project
-      run: ./mvnw -B package --file pom.xml
+      run: chmod +x mvnw && ./mvnw -B package --file pom.xml

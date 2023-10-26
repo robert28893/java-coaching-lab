@@ -118,7 +118,7 @@ jobs:
           SPRING_DATA_MONGODB_USERNAME: 'user'
           SPRING_DATA_MONGODB_PASSWORD: 'User123'
           SPRING_DATA_MONGODB_DATABASE: 'sample_db'
-        run: ./mvnw -B package --file pom.xml
+        run: chmod +x mvnw && ./mvnw -B package --file pom.xml
 ```
 
 ### Đẩy source code lên `github`
@@ -129,7 +129,7 @@ Tại thư mục của dự án vừa tạo. Thực hiện các lệnh sau:
 git init -b main
 git add .
 git commit -m "First commit"
-git remote add origin <REMOTE_URL> # REMOTE_URL là link project trên `gitlab` 
+git remote add origin <REMOTE_URL> # REMOTE_URL là link project trên `github` 
 git push origin main
 ```
 
