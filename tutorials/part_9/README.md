@@ -6,9 +6,9 @@
   * [Mongodb](#mongodb)
     * [Cài đặt `Mongodb`](#cài-đặt-mongodb)
     * [Kết nối `Spring` với `Mongodb`](#kết-nối-spring-với-mongodb)
-    * [Lưu log request, response của API và trong `mongodb`](#lưu-log-request-response-của-api-và-trong-mongodb)
+    * [Lưu log request, response của API vào trong `mongodb`](#lưu-log-request-response-của-api-vào-trong-mongodb)
   * [Docker: build and run](#docker-build-and-run)
-    * [Dockerfile and build image](#dockerfile-and-build-image)
+    * [Dockerfile and building image](#dockerfile-and-building-image)
     * [Run image](#run-image)
       * [Sử dụng command line](#sử-dụng-command-line)
       * [Sử dụng docker compose file](#sử-dụng-docker-compose-file)
@@ -62,7 +62,7 @@ Tìm hiểu về cách làm việc với `spring-data-mongo`:
 
 - [spring-data-mongodb-tutorial](https://www.baeldung.com/spring-data-mongodb-tutorial)
 
-### Lưu log request, response của API và trong `mongodb`
+### Lưu log request, response của API vào trong `mongodb`
 
 Tìm hiểu cách logging request, response trong `Spring` thông qua hướng dẫn sau:
 
@@ -76,12 +76,32 @@ Tham khảo:
 
 ## Docker: build and run
 
-### Dockerfile and build image
+Trong phần này bạn sẽ tìm hiểu cách viết một file `Dockerfile` để build image cho một chương trình spring.
+Cùng tìm hiểu cách build image trong docker với lệnh `docker build`.
+
+Tiếp theo, bạn sẽ sử dụng image đã tạo được để chạy chương trình. Bạn sẽ tìm hiểu 2 cách để chạy 1 docker image: Sử dụng
+lệnh `docker run` hoặc thông qua `docker-compose` file.
+
+### Dockerfile and building image
+
+Cùng tìm hiểu về `Dockerfile` tại link sau:
+[Dockerfile best practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
+
+Tiếp theo, tìm hiểu cách viết một `Dockerfile` cho ứng dụng `spring`:
+[Spring Boot Docker](https://spring.io/guides/topicals/spring-boot-docker/)
 
 ### Run image
 
 #### Sử dụng command line
 
+Tìm hiểu lệnh `docker run`: [docker run](https://docs.docker.com/engine/reference/run/)
+
 #### Sử dụng docker compose file
 
+[Compose file](https://docs.docker.com/compose/compose-file/03-compose-file/)
+
+[Docker compose cli](https://docs.docker.com/compose/reference/)
+
 ## Tham khảo
+
+- [Sample Project](../../source/sample-project)

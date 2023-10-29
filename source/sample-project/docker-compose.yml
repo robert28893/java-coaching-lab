@@ -1,0 +1,23 @@
+version: '3.3'
+
+services:
+  sample-service:
+    image: sample-project:latest
+    environment:
+      SPRING_DATASOURCE_URL: 'jdbc:mysql://host.docker.internal:3306/sample_db'
+      SPRING_DATASOURCE_USERNAME: 'root'
+      SPRING_DATASOURCE_PASSWORD: 'Admin@123'
+      SPRING_JPA_HIBERNATE_DDLAUTO: 'update'
+      SPRING_DATA_REDIS_HOST: 'host.docker.internal'
+      SPRING_DATA_REDIS_PORT: '6379'
+      SPRING_DATA_REDIS_PASSWORD: 'Redis@123'
+      SPRING_DATA_MONGODB_HOST: 'host.docker.internal'
+      SPRING_DATA_MONGODB_PORT: '27017'
+      SPRING_DATA_MONGODB_USERNAME: 'user'
+      SPRING_DATA_MONGODB_PASSWORD: 'User123'
+      SPRING_DATA_MONGODB_DATABASE: 'sample_db'
+    ports:
+      - '8080:8080'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: on-failure
