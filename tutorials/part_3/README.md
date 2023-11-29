@@ -57,7 +57,9 @@ Cuối cùng, bạn sẽ viết unit test cho chương trình của bạn.
 
 **Output**
 
-Thông báo thành công hoặc thất bại
+Output trả về có format như sau [response](../part_0_requirements/README.md#2-response-của-api)
+
+Với trường hợp thành công thì `statusCode` = 201 và `object` = {}
 
 **Description**
 
@@ -82,7 +84,9 @@ Khi thêm mới cần lưu thời gian tạo mới và cập nhật vào `create
 
 **Output**
 
-Thông báo thành công hoặc thất bại.
+Output trả về có format như sau [response](../part_0_requirements/README.md#2-response-của-api)
+
+Với trường hợp thành công thì `statusCode` = 200 và `object` = {}
 
 **Description**
 
@@ -99,6 +103,10 @@ Khi chỉnh sửa cần lưu lại thời điểm chỉnh sửa `updated_at`.
 | id     |           | x        | Mã id của employer |
 
 **Output**
+
+Output trả về có format như sau [response](../part_0_requirements/README.md#2-response-của-api)
+
+Với trường hợp thành công thì `statusCode` = 200 và `object` bao gồm các trường sau:
 
 | Trường       | Mô tả                         |
 |--------------|-------------------------------|
@@ -124,6 +132,13 @@ Nếu mã `id` không tồn tại cần báo lỗi.
 
 **Output**
 
+Output trả về có format như sau [response](../part_0_requirements/README.md#2-response-của-api)
+
+Với trường hợp thành công thì `statusCode` = 200 và `object` gồm các thông tin về paging như
+sau [paging](../part_0_requirements/README.md#2-response-của-api)
+
+`data` trong paging là 1 mảng các phần tử bao gồm các trường sau:
+
 | Trường       | Mô tả                    |
 |--------------|--------------------------|
 | id           | Mã id của employer       |
@@ -146,7 +161,9 @@ Danh sách sắp xếp theo `name` của `employer`.
 
 **Output**
 
-Thông báo thành công hoặc thất bại.
+Output trả về có format như sau [response](../part_0_requirements/README.md#2-response-của-api)
+
+Với trường hợp thành công thì `statusCode` = 200 và `object` = {}
 
 **Description**
 

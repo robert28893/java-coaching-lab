@@ -63,7 +63,9 @@ Trong phần này bạn sẽ tiếp tục triển khai các bộ API liên quan 
 
 **Output**
 
-Thông báo thành công hay thất bại.
+Output trả về có format như sau [response](../part_0_requirements/README.md#2-response-của-api)
+
+Với trường hợp thành công thì `statusCode` = 201 và `object` = {}
 
 **Description**
 
@@ -88,7 +90,9 @@ Nếu `employerId`, `fieldId`, `provinceId` không tồn tại thì báo lỗi.
 
 **Output**
 
-Thông báo thành công hay thất bại.
+Output trả về có format như sau [response](../part_0_requirements/README.md#2-response-của-api)
+
+Với trường hợp thành công thì `statusCode` = 200 và `object` = {}
 
 **Description**
 
@@ -105,6 +109,10 @@ Nếu `employerId`, `fieldId`, `provinceId` không tồn tại thì báo lỗi.
 | id     | x        |           | Mã id của job |
 
 **Output**
+
+Output trả về có format như sau [response](../part_0_requirements/README.md#2-response-của-api)
+
+Với trường hợp thành công thì `statusCode` = 200 và `object` bao gồm các trường sau:
 
 | Trường       | Mô tả                                                        |
 |--------------|--------------------------------------------------------------|
@@ -135,6 +143,13 @@ Nếu `id` không tồn tại thì báo lỗi.
 
 **Output**
 
+Output trả về có format như sau [response](../part_0_requirements/README.md#2-response-của-api)
+
+Với trường hợp thành công thì `statusCode` = 200 và `object` gồm các thông tin về paging như
+sau [paging](../part_0_requirements/README.md#2-response-của-api)
+
+`data` trong paging là 1 mảng các phần tử bao gồm các trường sau:
+
 | Trường       | Mô tả                     |
 |--------------|---------------------------|
 | id           | Mã id của job             |
@@ -159,7 +174,9 @@ Danh sách sắp xếp theo thứ tự giảm dần `expiredAt` của `job`, tă
 
 **Output**
 
-Thông báo thành công hoặc thất bại.
+Output trả về có format như sau [response](../part_0_requirements/README.md#2-response-của-api)
+
+Với trường hợp thành công thì `statusCode` = 200 và `object` = {}
 
 **Description**
 
@@ -190,7 +207,9 @@ Nếu `id` không tồn tại thì báo lỗi.
 
 **Output**
 
-Thông báo thành công hay thất bại.
+Output trả về có format như sau [response](../part_0_requirements/README.md#2-response-của-api)
+
+Với trường hợp thành công thì `statusCode` = 201 và `object` = {}
 
 **Description**
 
@@ -212,7 +231,9 @@ Nếu `provinceId` không tồn tại thì báo lỗi.
 
 **Output**
 
-Thông báo thành công hay thất bại.
+Output trả về có format như sau [response](../part_0_requirements/README.md#2-response-của-api)
+
+Với trường hợp thành công thì `statusCode` = 200 và `object` = {}
 
 **Description**
 
@@ -229,6 +250,10 @@ Nếu `provinceId` không tồn tại thì báo lỗi.
 | id     | x        |           | Mã id của seeker |
 
 **Output**
+
+Output trả về có format như sau [response](../part_0_requirements/README.md#2-response-của-api)
+
+Với trường hợp thành công thì `statusCode` = 200 và `object` bao gồm các trường sau:
 
 | Trường       | Mô tả                                  |
 |--------------|----------------------------------------|
@@ -255,6 +280,13 @@ Nếu `id` không tồn tại thì báo lỗi.
 
 **Output**
 
+Output trả về có format như sau [response](../part_0_requirements/README.md#2-response-của-api)
+
+Với trường hợp thành công thì `statusCode` = 200 và `object` gồm các thông tin về paging như
+sau [paging](../part_0_requirements/README.md#2-response-của-api)
+
+`data` trong paging là 1 mảng các phần tử bao gồm các trường sau:
+
 | Trường       | Mô tả                                  |
 |--------------|----------------------------------------|
 | id           | Mã id của seeker                       |
@@ -278,7 +310,9 @@ Danh sách sắp xếp theo `name` của `seeker`.
 
 **Output**
 
-Thông báo thành công hoặc thất bại.
+Output trả về có format như sau [response](../part_0_requirements/README.md#2-response-của-api)
+
+Với trường hợp thành công thì `statusCode` = 200 và `object` = {}
 
 **Description**
 
@@ -313,7 +347,9 @@ Nếu `id` không tồn tại thì báo lỗi.
 
 **Output**
 
-Thông báo thành công hay thất bại.
+Output trả về có format như sau [response](../part_0_requirements/README.md#2-response-của-api)
+
+Với trường hợp thành công thì `statusCode` = 201 và `object` = {}
 
 **Description**
 
@@ -336,7 +372,9 @@ Nếu `seekerId`, `fieldId`, `provinceId` không tồn tại thì báo lỗi.
 
 **Output**
 
-Thông báo thành công hay thất bại.
+Output trả về có format như sau [response](../part_0_requirements/README.md#2-response-của-api)
+
+Với trường hợp thành công thì `statusCode` = 200 và `object` = {}
 
 **Description**
 
@@ -353,6 +391,10 @@ Nếu `seekerId`, `fieldId`, `provinceId` không tồn tại thì báo lỗi.
 | id     | x        |           | Mã id của resume |
 
 **Output**
+
+Output trả về có format như sau [response](../part_0_requirements/README.md#2-response-của-api)
+
+Với trường hợp thành công thì `statusCode` = 200 và `object` bao gồm các trường sau:
 
 | Trường     | Mô tả                                                          |
 |------------|----------------------------------------------------------------|
@@ -381,6 +423,13 @@ Nếu `id` không tồn tại thì báo lỗi.
 
 **Output**
 
+Output trả về có format như sau [response](../part_0_requirements/README.md#2-response-của-api)
+
+Với trường hợp thành công thì `statusCode` = 200 và `object` gồm các thông tin về paging như
+sau [paging](../part_0_requirements/README.md#2-response-của-api)
+
+`data` trong paging là 1 mảng các phần tử bao gồm các trường sau:
+
 | Trường     | Mô tả                             |
 |------------|-----------------------------------|
 | id         | Mã id của resume                  |
@@ -404,7 +453,9 @@ Danh sách sắp xếp theo `title` của `resume` và `name` của `seeker`.
 
 **Output**
 
-Thông báo thành công hoặc thất bại.
+Output trả về có format như sau [response](../part_0_requirements/README.md#2-response-của-api)
+
+Với trường hợp thành công thì `statusCode` = 200 và `object` = {}
 
 **Description**
 

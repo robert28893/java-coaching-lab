@@ -41,6 +41,10 @@ trong một khoảng thời gian.
 
 **Output**
 
+Output trả về có format như sau [response](../part_0_requirements/README.md#2-response-của-api)
+
+Với trường hợp thành công thì `statusCode` = 200 và `object` bao gồm các trường sau:
+
 | Trường      | Mô tả                                       |
 |-------------|---------------------------------------------|
 | numEmployer | Tổng số `employer` trong khoảng ngày        |
@@ -74,6 +78,10 @@ Lấy thông tin `job` và các `seeker` phù hợp với `job` đó.
 | id     | x        |           | Id của `job` |
 
 **Output**
+
+Output trả về có format như sau [response](../part_0_requirements/README.md#2-response-của-api)
+
+Với trường hợp thành công thì `statusCode` = 200 và `object` bao gồm các trường sau:
 
 | Trường       | Mô tả                                                        |
 |--------------|--------------------------------------------------------------|
