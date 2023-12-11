@@ -12,6 +12,11 @@
     * [Run image](#run-image)
       * [Sử dụng command line](#sử-dụng-command-line)
       * [Sử dụng docker compose file](#sử-dụng-docker-compose-file)
+  * [Jmeter](#jmeter)
+    * [Install](#install)
+    * [Cấu hình và thực thi kịch bản kiểm thử hiệu năng](#cấu-hình-và-thực-thi-kịch-bản-kiểm-thử-hiệu-năng)
+    * [Xem kết quả](#xem-kết-quả)
+    * [Thực hành](#thực-hành)
   * [Tham khảo](#tham-khảo)
 <!-- TOC -->
 
@@ -101,6 +106,62 @@ Tìm hiểu lệnh `docker run`: [docker run](https://docs.docker.com/engine/ref
 [Compose file](https://docs.docker.com/compose/compose-file/03-compose-file/)
 
 [Docker compose cli](https://docs.docker.com/compose/reference/)
+
+## Jmeter
+
+JMeter là một công cụ được sử dụng để thực hiện kiểm tra hiệu năng và tải trên các ứng dụng web. 
+
+Trong phần này bạn sẽ tìm hiểu cách cài đặt `jmeter`, cách cấu hình và thực thi kịch bản kiểm thử hiệu năng
+
+### Install
+
+Download jmeter tại link sau và thực hiện giải nén [link](https://jmeter.apache.org/download_jmeter.cgi)
+
+Chạy bằng cách run file `jmeter.sh` trong thư mục `bin`
+
+### Cấu hình và thực thi kịch bản kiểm thử hiệu năng
+
+**Thêm ThreadGroup**
+
+![](img/jmeter_thread_group.png)
+
+**Thêm HttpRequest**
+
+![](img/jmeter_http_request.png)
+
+**Thêm View Results Tree**
+
+![](img/jmeter_view_results_tree.png)
+
+**Thêm Summary Report**
+
+![](img/jmeter_sumary_report.png)
+
+**Cấu hình tham số cho ThreadGroup**
+
+![](img/jmeter_thread_group_settings.png)
+
+**Cấu hình HttpRequest**
+
+![](img/jmeter_http_request_settings.png)
+
+Lưu ý cấu hình các tham số cần thiết cho http request như method, path, parameters, ...
+
+### Xem kết quả
+
+Tiến hành chạy và thu được các kết quả như sau:
+
+**View Results Tree**
+
+![](img/jmeter_view_results_tree_output.png)
+
+**Summary Report**
+
+![](img/jmeter_summary_report_output.png)
+
+### Thực hành
+
+Hãy áp dụng vào việc kiểm thử hiệu năng api `list employer` 
 
 ## Tham khảo
 
