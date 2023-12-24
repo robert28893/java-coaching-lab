@@ -183,6 +183,8 @@ làm trong phần này bao gồm:
 
 ### Build `docker image` và push lên `Container Registry`
 
+[Install the gcloud CLI](https://cloud.google.com/sdk/docs/install)
+
 [Building Containers](https://cloud.google.com/run/docs/building/containers#docker)
 
 ### Deploy to Cloud Run
