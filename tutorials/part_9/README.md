@@ -17,6 +17,10 @@
     * [Cấu hình và thực thi kịch bản kiểm thử hiệu năng](#cấu-hình-và-thực-thi-kịch-bản-kiểm-thử-hiệu-năng)
     * [Xem kết quả](#xem-kết-quả)
     * [Thực hành](#thực-hành)
+  * [Cloud Run](#cloud-run)
+    * [MySQL on Compute Engine](#mysql-on-compute-engine)
+    * [Build `docker image` và push lên `Container Registry`](#build-docker-image-và-push-lên-container-registry)
+    * [Deploy to Cloud Run](#deploy-to-cloud-run)
   * [Tham khảo](#tham-khảo)
 <!-- TOC -->
 
@@ -109,7 +113,7 @@ Tìm hiểu lệnh `docker run`: [docker run](https://docs.docker.com/engine/ref
 
 ## Jmeter
 
-JMeter là một công cụ được sử dụng để thực hiện kiểm tra hiệu năng và tải trên các ứng dụng web. 
+JMeter là một công cụ được sử dụng để thực hiện kiểm tra hiệu năng và tải trên các ứng dụng web.
 
 Trong phần này bạn sẽ tìm hiểu cách cài đặt `jmeter`, cách cấu hình và thực thi kịch bản kiểm thử hiệu năng
 
@@ -161,7 +165,31 @@ Tiến hành chạy và thu được các kết quả như sau:
 
 ### Thực hành
 
-Hãy áp dụng vào việc kiểm thử hiệu năng api `list employer` 
+Hãy áp dụng vào việc kiểm thử hiệu năng api `list employer`
+
+## Cloud Run
+
+Trong phần này bạn sẽ thử triển khai chương trình của bạn lên google cloud sử dụng `Cloud Run`. Các công việc bạn cần
+làm trong phần này bao gồm:
+
+- Cài đặt `mySQL` server lên `Compute Engine` của google.
+- Build `docker image` và push lên `Container Registry` của goole.
+- Tạo và chạy service bằng `Cloud Run` sử dụng image đã push lên registry.
+- Kiểm tra service vừa tạo.
+
+### MySQL on Compute Engine
+
+[How to Set Up MySQL on Google Compute Engine](https://cloud.google.com/compute/docs/instances/sql-server/setup-mysql#create_a_compute_engine_instance)
+
+### Build `docker image` và push lên `Container Registry`
+
+[Install the gcloud CLI](https://cloud.google.com/sdk/docs/install)
+
+[Building Containers](https://cloud.google.com/run/docs/building/containers#docker)
+
+### Deploy to Cloud Run
+
+[Deploy to Cloud Run](https://cloud.google.com/run/docs/quickstarts/deploy-container)
 
 ## Tham khảo
 
