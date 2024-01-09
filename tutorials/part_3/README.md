@@ -195,6 +195,9 @@ Thực hiện việc testing để đảm bảo việc mapping và validating đ
 
 Bạn thực hiện việc start database mySQL và import database từ file `job_db.sql`.
 
+**Lưu ý**: Nếu bạn đã cài mySQL server thì không cần khởi chạy docker, chỉ cần import database từ file `job_db.sql` vào
+database server mà bạn đã cài đặt.
+
 Xem hướng dẫn tại thư mục [docker-compose/mysql](../../source/docker-compose/mysql).
 
 ## Xử lý logic
