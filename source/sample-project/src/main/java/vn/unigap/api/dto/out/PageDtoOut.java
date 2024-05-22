@@ -1,12 +1,11 @@
 package vn.unigap.api.dto.out;
 
+import java.util.ArrayList;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -29,6 +28,7 @@ public class PageDtoOut<T> {
         if (totalElements % pageSize != 0) {
             totalPages++;
         }
-        return PageDtoOut.<T>builder().page(page).pageSize(pageSize).totalElements(totalElements).totalPages(totalPages).data(data).build();
+        return PageDtoOut.<T>builder().page(page).pageSize(pageSize).totalElements(totalElements).totalPages(totalPages)
+                .data(data).build();
     }
 }

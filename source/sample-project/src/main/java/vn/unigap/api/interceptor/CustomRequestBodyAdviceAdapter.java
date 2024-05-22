@@ -1,6 +1,7 @@
 package vn.unigap.api.interceptor;
 
 import jakarta.servlet.http.HttpServletRequest;
+import java.lang.reflect.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpInputMessage;
@@ -11,9 +12,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.mvc.method.annotation.RequestBodyAdviceAdapter;
 import vn.unigap.api.service.LoggingService;
 
-import java.lang.reflect.Type;
-
-@ControllerAdvice(basePackages = {"vn.unigap.api.controller"})
+@ControllerAdvice(basePackages = { "vn.unigap.api.controller" })
 public class CustomRequestBodyAdviceAdapter extends RequestBodyAdviceAdapter {
 
     private final LoggingService loggingService;
@@ -24,14 +23,16 @@ public class CustomRequestBodyAdviceAdapter extends RequestBodyAdviceAdapter {
     }
 
     @Override
-    public boolean supports(MethodParameter methodParameter, Type type, Class<? extends HttpMessageConverter<?>> aClass) {
+    public boolean supports(MethodParameter methodParameter, Type type,
+            Class<? extends HttpMessageConverter<?>> aClass) {
         return true;
     }
 
     @Override
     public Object afterBodyRead(Object body, HttpInputMessage inputMessage, MethodParameter parameter, Type targetType,
-                                Class<? extends HttpMessageConverter<?>> converterType) {
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+            Class<? extends HttpMessageConverter<?>> converterType) {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
+                .getRequest();
         loggingService.logRequest(request, body);
 
         return super.afterBodyRead(body, inputMessage, parameter, targetType, converterType);

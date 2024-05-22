@@ -3,7 +3,7 @@ FROM eclipse-temurin:17-jdk AS maven_build
 WORKDIR /tmp/
 COPY .mvn /tmp/.mvn/
 COPY mvnw /tmp/
-COPY checkstyle.xml /tmp/
+COPY eclipse-java-formatter.xml /tmp/
 COPY pom.xml /tmp/
 COPY src /tmp/src/
 RUN ./mvnw package -Dmaven.test.skip=true

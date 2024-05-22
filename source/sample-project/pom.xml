@@ -16,6 +16,7 @@
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2022.0.3</spring-cloud.version>
+		<spotless.version>2.43.0</spotless.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -111,22 +112,25 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<version>3.3.0</version>
-					<dependencies>
-						<dependency>
-							<groupId>com.puppycrawl.tools</groupId>
-							<artifactId>checkstyle</artifactId>
-							<version>10.12.3</version>
-						</dependency>
-					</dependencies>
+				<groupId>com.diffplug.spotless</groupId>
+				<artifactId>spotless-maven-plugin</artifactId>
+				<version>${spotless.version}</version>
 				<configuration>
-					<configLocation>checkstyle.xml</configLocation>
+					<java>
+						<toggleOffOn>
+							<off>formatter:off</off>
+							<on>formatter:on</on>
+						</toggleOffOn>
+						<eclipse>
+							<file>eclipse-java-formatter.xml</file>
+							<version>4.26</version>
+						</eclipse>
+						<removeUnusedImports/>
+					</java>
 				</configuration>
 				<executions>
 					<execution>
-						<id>validate</id>
+						<id>spotless-check</id>
 						<phase>validate</phase>
 						<goals>
 							<goal>check</goal>

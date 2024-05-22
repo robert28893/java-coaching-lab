@@ -1,8 +1,7 @@
 package vn.unigap.common.enums;
 
 public enum TokenStatus {
-    INIT(0),
-    USED(1);
+    INIT(0), USED(1);
 
     private final int status;
 

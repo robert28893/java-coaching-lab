@@ -17,24 +17,24 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.util.UriComponentsBuilder;
 import vn.unigap.api.dto.in.AuthLoginDtoIn;
 import vn.unigap.api.dto.in.PageDtoIn;
-import vn.unigap.common.response.ApiResponse;
 import vn.unigap.api.dto.out.AuthLoginDtoOut;
 import vn.unigap.api.dto.out.PageDtoOut;
 import vn.unigap.api.dto.out.UserDtoOut;
+import vn.unigap.common.response.ApiResponse;
 
 @SpringBootTest()
 @AutoConfigureMockMvc
-//@WebMvcTest(controllers = {UserController.class})
-//@MockBean(classes = {SampleDataGenerationService.class})
+// @WebMvcTest(controllers = {UserController.class})
+// @MockBean(classes = {SampleDataGenerationService.class})
 class UserControllerTest {
 
-//    @Value(value="${local.server.port}")
-//    private int port;
+    // @Value(value="${local.server.port}")
+    // private int port;
 
-//    @Autowired
-//    private TestRestTemplate restTemplate;
-//    @MockBean
-//    private UserService userService;
+    // @Autowired
+    // private TestRestTemplate restTemplate;
+    // @MockBean
+    // private UserService userService;
 
     @Autowired
     private MockMvc mockMvc;
@@ -46,54 +46,47 @@ class UserControllerTest {
 
     @BeforeEach
     void getAccessToken() throws Exception {
-        var uri = UriComponentsBuilder.fromUriString("/auth/login")
-                .toUriString();
+        var uri = UriComponentsBuilder.fromUriString("/auth/login").toUriString();
 
         AuthLoginDtoIn loginDtoIn = new AuthLoginDtoIn();
         loginDtoIn.setUsername("user");
         loginDtoIn.setPassword("password");
 
-        mockMvc.perform(
-                        MockMvcRequestBuilders.post(uri)
-                                .contentType(MediaType.APPLICATION_JSON)
-                                .content(objectMapper.writeValueAsBytes(loginDtoIn))
-                ).andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andDo(result -> {
+        mockMvc.perform(MockMvcRequestBuilders.post(uri).contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsBytes(loginDtoIn))).andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk()).andDo(result -> {
                     var response = objectMapper.readValue(result.getResponse().getContentAsString(),
                             new TypeReference<ApiResponse<AuthLoginDtoOut>>() {
-                            }
-                    );
+                            });
                     accessToken = response.getObject().getAccessToken();
                 });
     }
 
     @Test
     void list() throws Exception {
-//        String res = restTemplate.getForObject("http://localhost:" + port + "/users", String.class);
-//        System.out.println(res);
+        // String res = restTemplate.getForObject("http://localhost:" + port + "/users",
+        // String.class);
+        // System.out.println(res);
 
-//        Mockito.when(userService.list(new PageDtoIn())).thenReturn(PageDtoOut.<UserDtoOut>builder()
-//                        .page(1)
-//                        .totalPages(2L)
-//                        .totalElements(12L)
-//                .build());
+        // Mockito.when(userService.list(new
+        // PageDtoIn())).thenReturn(PageDtoOut.<UserDtoOut>builder()
+        // .page(1)
+        // .totalPages(2L)
+        // .totalElements(12L)
+        // .build());
 
         PageDtoIn pageDtoIn = new PageDtoIn();
         pageDtoIn.setPage(2);
         pageDtoIn.setPageSize(100);
 
-        var uri = UriComponentsBuilder.fromUriString("/users")
-                .queryParam("page", pageDtoIn.getPage())
-                .queryParam("pageSize", pageDtoIn.getPageSize())
-                .toUriString();
+        var uri = UriComponentsBuilder.fromUriString("/users").queryParam("page", pageDtoIn.getPage())
+                .queryParam("pageSize", pageDtoIn.getPageSize()).toUriString();
 
         System.out.println("ACCESS TOKEN: " + accessToken);
 
-        mockMvc.perform(MockMvcRequestBuilders.get(uri)
-                        .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken))
-                .andDo(MockMvcResultHandlers.print())
-                .andExpect(MockMvcResultMatchers.status().isOk()).andExpect(result -> {
+        mockMvc.perform(MockMvcRequestBuilders.get(uri).header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken))
+                .andDo(MockMvcResultHandlers.print()).andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(result -> {
                     var response = objectMapper.readValue(result.getResponse().getContentAsString(),
                             new TypeReference<ApiResponse<PageDtoOut<UserDtoOut>>>() {
                             });
@@ -130,6 +123,4 @@ class UserControllerTest {
                     Assertions.assertEquals(expectedDataSize, response.getObject().getData().size());
                 });
     }
-
-
 }

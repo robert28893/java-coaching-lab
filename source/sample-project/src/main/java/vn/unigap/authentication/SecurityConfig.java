@@ -3,6 +3,8 @@ package vn.unigap.authentication;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
 import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -25,9 +27,6 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
 
-import java.security.interfaces.RSAPrivateKey;
-import java.security.interfaces.RSAPublicKey;
-
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -42,31 +41,30 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer.configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()))
-//                .cors(cfg -> cfg.disable())
+        http.cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer
+                .configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()))
+                // .cors(cfg -> cfg.disable())
                 .csrf(cfg -> cfg.disable())
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/auth/login", "/actuator/**").permitAll()
-                                .anyRequest().authenticated()
-                )
+                        .anyRequest().authenticated())
                 .oauth2ResourceServer(configurer -> {
                     configurer.authenticationEntryPoint(customAuthEntryPoint);
                     configurer.jwt(jwtConfigurer -> {
                         try {
-                            jwtConfigurer.decoder(NimbusJwtDecoder.withPublicKey(readPublicKey(
-                                    new ClassPathResource("public.pem"))).build());
+                            jwtConfigurer.decoder(NimbusJwtDecoder
+                                    .withPublicKey(readPublicKey(new ClassPathResource("public.pem"))).build());
                         } catch (Exception e) {
                             log.error("Error: ", e);
                             throw new RuntimeException(e);
                         }
                     });
                 })
-//                .formLogin((form) -> form
-//                        .loginPage("/login")
-//                        .permitAll()
-//                )
-//                .logout((logout) -> logout.permitAll())
+        // .formLogin((form) -> form
+        // .loginPage("/login")
+        // .permitAll()
+        // )
+        // .logout((logout) -> logout.permitAll())
         ;
 
         return http.build();
@@ -74,12 +72,8 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        UserDetails user =
-                User.withDefaultPasswordEncoder()
-                        .username("user")
-                        .password("password")
-                        .roles("USER")
-                        .build();
+        UserDetails user = User.withDefaultPasswordEncoder().username("user").password("password").roles("USER")
+                .build();
 
         return new InMemoryUserDetailsManager(user);
     }
@@ -88,12 +82,8 @@ public class SecurityConfig {
     public JwtEncoder jwtEncoder() {
         try {
             return new NimbusJwtEncoder(new ImmutableJWKSet<>(
-                    new JWKSet(
-                            new RSAKey.Builder(readPublicKey(new ClassPathResource("public.pem")))
-                                    .privateKey(readPrivateKey(new ClassPathResource("private.pem")))
-                                    .build()
-                    )
-            ));
+                    new JWKSet(new RSAKey.Builder(readPublicKey(new ClassPathResource("public.pem")))
+                            .privateKey(readPrivateKey(new ClassPathResource("private.pem"))).build())));
         } catch (Exception e) {
             log.error("Error: ", e);
             throw new RuntimeException(e);
@@ -107,21 +97,23 @@ public class SecurityConfig {
 
     private static RSAPublicKey readPublicKey(Resource resource) throws Exception {
         return RsaKeyConverters.x509().convert(resource.getInputStream());
-//        try (FileReader keyReader = new FileReader(resource.getFile())) {
-//            PEMParser pemParser = new PEMParser(keyReader);
-//            JcaPEMKeyConverter converter = new JcaPEMKeyConverter();
-//            SubjectPublicKeyInfo publicKeyInfo = SubjectPublicKeyInfo.getInstance(pemParser.readObject());
-//            return (RSAPublicKey) converter.getPublicKey(publicKeyInfo);
-//        }
+        // try (FileReader keyReader = new FileReader(resource.getFile())) {
+        // PEMParser pemParser = new PEMParser(keyReader);
+        // JcaPEMKeyConverter converter = new JcaPEMKeyConverter();
+        // SubjectPublicKeyInfo publicKeyInfo =
+        // SubjectPublicKeyInfo.getInstance(pemParser.readObject());
+        // return (RSAPublicKey) converter.getPublicKey(publicKeyInfo);
+        // }
     }
 
     private static RSAPrivateKey readPrivateKey(Resource resource) throws Exception {
         return RsaKeyConverters.pkcs8().convert(resource.getInputStream());
-//        try (FileReader keyReader = new FileReader(resource.getFile())) {
-//            PEMParser pemParser = new PEMParser(keyReader);
-//            JcaPEMKeyConverter converter = new JcaPEMKeyConverter();
-//            SubjectPublicKeyInfo publicKeyInfo = SubjectPublicKeyInfo.getInstance(pemParser.readObject());
-//            return (RSAPublicKey) converter.getPublicKey(publicKeyInfo);
-//        }
+        // try (FileReader keyReader = new FileReader(resource.getFile())) {
+        // PEMParser pemParser = new PEMParser(keyReader);
+        // JcaPEMKeyConverter converter = new JcaPEMKeyConverter();
+        // SubjectPublicKeyInfo publicKeyInfo =
+        // SubjectPublicKeyInfo.getInstance(pemParser.readObject());
+        // return (RSAPublicKey) converter.getPublicKey(publicKeyInfo);
+        // }
     }
 }

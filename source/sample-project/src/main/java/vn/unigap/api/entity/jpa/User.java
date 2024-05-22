@@ -1,13 +1,12 @@
 package vn.unigap.api.entity.jpa;
 
 import jakarta.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.io.Serializable;
-import java.util.Date;
 
 @Data
 @Builder
@@ -40,5 +39,4 @@ public class User implements Serializable {
     @Builder.Default
     @Column(name = "UPDATED_DATE")
     private Date updatedDate = new Date();
-
 }

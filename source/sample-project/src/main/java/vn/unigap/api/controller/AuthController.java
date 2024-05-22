@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import vn.unigap.api.dto.in.AuthLoginDtoIn;
-import vn.unigap.common.controller.AbstractResponseController;
 import vn.unigap.api.dto.out.AuthLoginDtoOut;
 import vn.unigap.api.service.AuthService;
+import vn.unigap.common.controller.AbstractResponseController;
 
 @RestController
 @RequestMapping(value = "/auth", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -30,20 +30,8 @@ public class AuthController extends AbstractResponseController {
         this.authService = authService;
     }
 
-    @Operation(
-            summary = "Đăng nhập",
-            responses = {
-                    @ApiResponse(
-                            responseCode = "200",
-                            content = {@Content(
-                                    mediaType = "application/json",
-                                    schema = @Schema(
-                                            implementation = ResponseLogin.class
-                                    )
-                            )}
-                    )
-            }
-    )
+    @Operation(summary = "Đăng nhập", responses = { @ApiResponse(responseCode = "200", content = {
+            @Content(mediaType = "application/json", schema = @Schema(implementation = ResponseLogin.class)) }) })
     @PostMapping(value = "/login")
     public ResponseEntity<?> login(@RequestBody @Valid AuthLoginDtoIn loginDtoIn) {
         return responseEntity(() -> {
@@ -53,5 +41,4 @@ public class AuthController extends AbstractResponseController {
 
     private static class ResponseLogin extends vn.unigap.common.response.ApiResponse<AuthLoginDtoOut> {
     }
-
 }

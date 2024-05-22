@@ -5,6 +5,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.*;
+import java.util.concurrent.CompletableFuture;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,9 +14,6 @@ import vn.unigap.api.entity.mongodb.RequestResponse;
 import vn.unigap.api.repository.mongodb.reqres.RequestResponseRepository;
 import vn.unigap.common.Common;
 import vn.unigap.common.Constants;
-
-import java.util.*;
-import java.util.concurrent.CompletableFuture;
 
 @Service
 @Log4j2
@@ -32,10 +31,7 @@ public class LoggingServiceImpl implements LoggingService {
         if (httpServletRequest.getAttribute(Constants.REQUEST_RESPONSE_ATTRIBUTE) == null) {
             String uuidRequest = Common.uuid();
 
-            reqres = RequestResponse.builder()
-                    .uuidRequest(uuidRequest)
-                    .requestAt(Common.currentDateTime())
-                    .build();
+            reqres = RequestResponse.builder().uuidRequest(uuidRequest).requestAt(Common.currentDateTime()).build();
 
             httpServletRequest.setAttribute(Constants.REQUEST_RESPONSE_ATTRIBUTE, reqres);
         } else {
@@ -49,9 +45,8 @@ public class LoggingServiceImpl implements LoggingService {
 
         if (body != null) {
             try {
-                reqres.setRequestBody(objectMapper.readValue(
-                        objectMapper.writeValueAsString(body),
-                        new TypeReference<>() {
+                reqres.setRequestBody(
+                        objectMapper.readValue(objectMapper.writeValueAsString(body), new TypeReference<>() {
                         }));
             } catch (JsonProcessingException e) {
                 log.warn("could not parse request body: " + body);
@@ -62,19 +57,24 @@ public class LoggingServiceImpl implements LoggingService {
     }
 
     @Override
-    public void logResponse(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object body) {
+    public void logResponse(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
+            Object body) {
         if (httpServletRequest.getAttribute(Constants.REQUEST_RESPONSE_ATTRIBUTE) == null) {
-            // case when request not passed to controller because unauthenticated. So we must recreate request
+            // case when request not passed to controller because unauthenticated. So we
+            // must recreate
+            // request
             logRequest(httpServletRequest, null);
         }
 
-        RequestResponse reqres = (RequestResponse) httpServletRequest.getAttribute(Constants.REQUEST_RESPONSE_ATTRIBUTE);
+        RequestResponse reqres = (RequestResponse) httpServletRequest
+                .getAttribute(Constants.REQUEST_RESPONSE_ATTRIBUTE);
         reqres.setResponseAt(Common.currentDateTime());
         reqres.setStatusCode(httpServletResponse.getStatus());
         reqres.setResponseHeaders(buildHeadersMap(httpServletResponse));
         try {
-            reqres.setResponseBody(objectMapper.readValue(objectMapper.writeValueAsString(body), new TypeReference<Map<String, Object>>() {
-            }));
+            reqres.setResponseBody(objectMapper.readValue(objectMapper.writeValueAsString(body),
+                    new TypeReference<Map<String, Object>>() {
+                    }));
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }

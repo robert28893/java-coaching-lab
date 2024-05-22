@@ -18,12 +18,7 @@ public class UserDtoOut {
     private String avatar;
 
     public static UserDtoOut from(User u) {
-        return UserDtoOut.builder()
-                .id(u.getId())
-                .email(u.getEmail())
-                .firstName(u.getFirstName())
-                .lastName(u.getLastName())
-                .avatar(u.getAvatar())
-                .build();
+        return UserDtoOut.builder().id(u.getId()).email(u.getEmail()).firstName(u.getFirstName())
+                .lastName(u.getLastName()).avatar(u.getAvatar()).build();
     }
 }
