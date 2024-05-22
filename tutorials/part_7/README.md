@@ -58,31 +58,34 @@ Tham khảo:
 
 ## Linter
 
-Trong phần này bạn sẽ sử dụng công cụ `checkstyle` để cấu hình các conventions của project.
+Trong phần này bạn sẽ sử dụng công cụ `spotless` để cấu hình các conventions của project.
 
 Công việc của bạn bao gồm:
 
-- [ ] Thêm build plugin của checkstyle
+- [ ] Thêm build plugin của spotless
 
 ```xml
 
 <plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-checkstyle-plugin</artifactId>
-    <version>3.3.0</version>
-    <dependencies>
-        <dependency>
-            <groupId>com.puppycrawl.tools</groupId>
-            <artifactId>checkstyle</artifactId>
-            <version>10.12.3</version>
-        </dependency>
-    </dependencies>
+    <groupId>com.diffplug.spotless</groupId>
+    <artifactId>spotless-maven-plugin</artifactId>
+    <version>${spotless.version}</version>
     <configuration>
-        <configLocation>checkstyle.xml</configLocation>
+        <java>
+            <toggleOffOn>
+                <off>formatter:off</off>
+                <on>formatter:on</on>
+            </toggleOffOn>
+            <eclipse>
+                <file>eclipse-java-formatter.xml</file>
+                <version>4.26</version>
+            </eclipse>
+            <removeUnusedImports/>
+        </java>
     </configuration>
     <executions>
         <execution>
-            <id>validate</id>
+            <id>spotless-check</id>
             <phase>validate</phase>
             <goals>
                 <goal>check</goal>
@@ -92,12 +95,10 @@ Công việc của bạn bao gồm:
 </plugin>
 ```
 
-- [ ] Thêm file cấu hình conventions `checkstyle.xml`
+- [ ] Thêm file cấu hình conventions `eclipse-java-formatter.xml`
 - [ ] Thực hiện việc build lại dự án bằng maven và kiểm tra các vi phạm. Nếu có hãy sửa lại các vi phạm đó.
 
 Tham khảo:
 
-- [https://lightrun.com/top-10-java-linters/](https://lightrun.com/top-10-java-linters/)
-- [https://www.baeldung.com/checkstyle-java](https://www.baeldung.com/checkstyle-java)
-- [https://maven.apache.org/plugins/maven-checkstyle-plugin/usage.html](https://maven.apache.org/plugins/maven-checkstyle-plugin/usage.html)
-- [Google's style](https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml)
+- [https://github.com/diffplug/spotless](https://github.com/diffplug/spotless)
+- [https://github.com/diffplug/spotless/tree/main/plugin-maven#java](https://github.com/diffplug/spotless/tree/main/plugin-maven#java)
