@@ -51,7 +51,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     private String grantAccessToken(String username) {
-        long iat = System.currentTimeMillis() / 100;
+        long iat = System.currentTimeMillis() / 1000;
         long exp = iat + Duration.ofHours(8).toSeconds();
 
         JwtEncoderParameters parameters = JwtEncoderParameters.from(JwsHeader.with(SignatureAlgorithm.RS256).build(),
