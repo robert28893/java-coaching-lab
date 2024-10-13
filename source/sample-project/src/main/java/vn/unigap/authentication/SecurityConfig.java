@@ -46,7 +46,7 @@ public class SecurityConfig {
                 // .cors(cfg -> cfg.disable())
                 .csrf(cfg -> cfg.disable())
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/auth/login", "/actuator/**").permitAll()
+                        .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs/**", "/auth/login", "/actuator/**").permitAll()
                         .anyRequest().authenticated())
                 .oauth2ResourceServer(configurer -> {
                     configurer.authenticationEntryPoint(customAuthEntryPoint);
